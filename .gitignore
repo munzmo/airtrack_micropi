@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# VS Code caches
+.vscode/*.log
+
+# OS
+.DS_Store
+.ds_rom

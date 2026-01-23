@@ -1,0 +1,41 @@
+##Connect Problem and Solution
+###Problem
+1. active ModemManager
+    The Linux service ModemManager accesses all newly recognized USB serial devices by default to check for possible modems. This caused the ESP32 USB UART to be occupied for a short time.
+2. Authorizations
+    The user was not a member of the dialout group. This meant that read/write access to /dev/ttyUSB0 was not possible, even though the device was recognized correctly.
+
+###Solution
+    - ModemManager permanently disabled (mask)
+    - User explicitly added to the dialout group
+    - New session started with active group membership
+    - After that, stable access to /dev/ttyUSB0 and successful MicroPython REPL
+
+##Get mount
+ESP32-DevKitC-32E mounted under Host as serial USB-Device
+ls -l /dev/ttyUSB0
+crw-rw---- 1 root dialout 188, 0 Jan 22 16:58 /dev/ttyUSB0
+
+##Dependencies for connect
+micropython-mpremote
+
+##Stable ID
+/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_7c6565edc299ef11854e187161ce3355-if00-port0
+
+##Stable Port
+mpremote connect /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_7c6565edc299ef11854e187161ce3355-if00-port0 repl
+
+##REPL connect
+mpremote connect /dev/ttyUSB0 repl
+
+##ESP32 microPythonRom
+https://micropython.org/download/ESP32_GENERIC/
+
+##Documentations
+###MicroPython
+https://docs.micropython.org/en/latest/esp32/tutorial/intro.html
+https://docs.micropython.org/en/latest/index.html
+###ESP32 Board
+https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html
+
+
