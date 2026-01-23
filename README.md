@@ -16,4 +16,28 @@ A brief description of what this project does and who it's for
 * **tvoc**: Total Volatile Organic Compounds in **ppb** (vom **CCS811**)
   * Volatile organic compounds as a total value.
 
+## Connect to board
+REPL connect
+```console
+mpremote connect /dev/ttyUSB0 repl
+```
 
+## Copy local to board
+### Copy to board
+```console
+mpremote connect /dev/ttyUSB0 fs cp main.py :main.py
+```
+### Reset board - like reset button
+```console
+mpremote connect /dev/ttyUSB0 reset
+```
+
+## Curl endpoints local network
+### Metadata
+```console
+curl http://192.168.178.37:8000/metrics
+```
+### Sensor readings
+```console
+curl http://192.168.178.37:8000/json
+```

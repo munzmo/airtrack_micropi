@@ -114,6 +114,8 @@ def ccs_set_env(temp_c, rh):
 
 print("json stream: one line per sample")
 while True:
+    ms = time.ticks_ms()
+
     t, rh, p = bme_read()
     ccs_set_env(t, rh)
 
@@ -122,12 +124,12 @@ while True:
     if ccs_ready():
         eco2, tvoc, status, err = ccs_read()
 
-    # JSON w/o json-lib -> stable and fast
     p_s = "null" if p is None else ("%.2f" % p)
     eco2_s = "null" if eco2 is None else str(eco2)
     tvoc_s = "null" if tvoc is None else str(tvoc)
 
-    print('{"t":%.2f,"rh":%.2f,"p":%s,"eco2":%s,"tvoc":%s}' %
-          (t, rh, p_s, eco2_s, tvoc_s))
+    print('{"ms":%d,"t":%.2f,"rh":%.2f,"p":%s,"eco2":%s,"tvoc":%s}' %
+          (ms, t, rh, p_s, eco2_s, tvoc_s))
 
     time.sleep(2)
+
