@@ -51,42 +51,55 @@ esp32_json_temperature_celsius{sensor="SENS01"}
 ## High-Frequency
 Metrics are created by Endpoint /json and formatted by Exporter in Prometheus format.
 
-esp32_json_temperature_celsius
 - Temperature in Unit **°C** (BME280)
-
-esp32_json_humidity_percent
+```console
+esp32_json_temperature_celsius
+```
 - Relative humidity in **%**
-
-esp32_json_pressure_hpa
+```console
+esp32_json_humidity_percent
+```
 - Barometric pressure in **hPa**
-
-esp32_json_eco2_ppm
+```console
+esp32_json_pressure_hpa
+```
 - eCO2 in ppm (CCS811)
-
-esp32_json_tvoc_ppb
+```console
+esp32_json_eco2_ppm
+```
 - TVOC in ppb (CCS811)
-
-esp32_json_ts_seconds
+```console
+esp32_json_tvoc_ppb
+```
 - Unix-Timestamp from ESP32 (UTC)
-
-esp32_json_uptime_ms
+```console
+esp32_json_ts_seconds
+```
 - Uptime since last boot (MS)
-
-esp32_json_exporter_up
+```console
+esp32_json_uptime_ms
+```
 - 1 = last poll successful, 0 = Error
-
-esp32_json_exporter_poll_seconds
+```console
+esp32_json_exporter_up
+```
 - Duration of the last JSON poll in seconds
+```console
+esp32_json_exporter_poll_seconds
+```
 
 ## Low-Frequency
 These metrics come directly from the ESP32 /metrics.
 
-esp32_uptime_seconds
 - Uptime seit letztem Boot (Sekunden)
-
-esp32_unix_time_seconds
+```console
+esp32_uptime_seconds
+```
 - Unix-Zeit des ESP32 (UTC)
-
-esp32_wifi_rssi_dbm
+```console
+esp32_unix_time_seconds
+```
 - WLAN-Signalstärke in dBm
-
+```console
+esp32_wifi_rssi_dbm
+```
