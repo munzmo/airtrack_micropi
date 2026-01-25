@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
+  "id": 17,
   "links": [],
   "panels": [
     {
@@ -255,7 +255,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_wifi_rssi_dbm\", device=\"esp32\", endpoint=\"metrics\", instance=\"192.168.178.37:8000\", job=\"esp32_metrics\", sensor=\"SENS01\"}"
+              "options": "{__name__=\"esp32_json_exporter_poll_seconds\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
             },
             "properties": [
               {
@@ -349,15 +349,15 @@
               },
               {
                 "color": "yellow",
-                "value": 25
+                "value": 22
               },
               {
                 "color": "#EF843C",
-                "value": 27
+                "value": 25
               },
               {
                 "color": "#E24D42",
-                "value": 29
+                "value": 27
               }
             ]
           },
@@ -874,15 +874,15 @@
               },
               {
                 "color": "yellow",
-                "value": 25
+                "value": 22
               },
               {
                 "color": "#EF843C",
-                "value": 27
+                "value": 25
               },
               {
                 "color": "#E24D42",
-                "value": 29
+                "value": 27
               }
             ]
           },
@@ -1486,5 +1486,5 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 22
+  "version": 25
 }
