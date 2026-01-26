@@ -63,7 +63,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{device=\"esp32\", endpoint=\"metrics\", instance=\"192.168.178.37:8000\", job=\"esp32_metrics\", sensor=\"SENS01\"}"
+              "options": "Value"
             },
             "properties": [
               {
@@ -159,7 +159,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_wifi_rssi_dbm\", device=\"esp32\", endpoint=\"metrics\", instance=\"192.168.178.37:8000\", job=\"esp32_metrics\", sensor=\"SENS01\"}"
+              "options": "esp32_wifi_rssi_dbm"
             },
             "properties": [
               {
@@ -255,7 +255,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_exporter_poll_seconds\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_exporter_poll_seconds"
             },
             "properties": [
               {
@@ -367,7 +367,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_temperature_celsius\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_temperature_celsius"
             },
             "properties": [
               {
@@ -462,7 +462,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_humidity_percent\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_humidity_percent"
             },
             "properties": [
               {
@@ -553,7 +553,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_pressure_hpa\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_pressure_hpa"
             },
             "properties": [
               {
@@ -642,13 +642,13 @@
               }
             ]
           },
-          "unit": "pressurehpa"
+          "unit": "ppm"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_eco2_ppm\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_eco2_ppm"
             },
             "properties": [
               {
@@ -743,7 +743,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_tvoc_ppb\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_tvoc_ppb"
             },
             "properties": [
               {
@@ -892,7 +892,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_temperature_celsius\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_temperature_celsius"
             },
             "properties": [
               {
@@ -965,7 +965,7 @@
             "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 12,
-            "gradientMode": "none",
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1022,7 +1022,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_humidity_percent\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_humidity_percent"
             },
             "properties": [
               {
@@ -1151,7 +1151,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_pressure_hpa\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_pressure_hpa"
             },
             "properties": [
               {
@@ -1284,7 +1284,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_eco2_ppm\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_eco2_ppm"
             },
             "properties": [
               {
@@ -1417,7 +1417,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"esp32_json_tvoc_ppb\", device=\"esp32\", endpoint=\"json\", instance=\"esp32-json-exporter:9105\", job=\"esp32_json\", sensor=\"SENS01\"}"
+              "options": "esp32_json_tvoc_ppb"
             },
             "properties": [
               {
@@ -1486,5 +1486,5 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 25
+  "version": 31
 }

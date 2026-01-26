@@ -103,3 +103,115 @@ esp32_unix_time_seconds
 ```console
 esp32_wifi_rssi_dbm
 ```
+
+# Add new sensors
+
+## Extend for /json endpoints
+### Extend docker-compose.yml
+```console
+services:
+[...]
+esp32-json-exporter-sens01:
+    build: ./esp32_json_exporter
+    container_name: esp32-json-exporter-sens01
+    environment:
+      ESP32_JSON_URL: "http://192.168.178.37:8000/json"
+      POLL_SECONDS: "3"
+      LISTEN_PORT: "9105"
+      HTTP_TIMEOUT: "1.5"
+    restart: unless-stopped
+    ports:
+      - "9105:9105"
+    networks:
+      - proxy
+
+esp32-json-exporter-sens02:
+    build: ./esp32_json_exporter
+    container_name: esp32-json-exporter-sens02
+    environment:
+      ESP32_JSON_URL: "http://192.168.178.38:8000/json"
+      POLL_SECONDS: "3"
+      LISTEN_PORT: "9106"
+      HTTP_TIMEOUT: "1.5"
+    restart: unless-stopped
+    ports:
+      - "9106:9106"
+    networks:
+      - proxy      
+[...]
+```
+
+### Extend prometheus.yml
+```console
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+[...]
+  - job_name: "esp32_json"
+    scrape_interval: 3s
+    scrape_timeout: 2s
+    static_configs:
+      - targets: ["192.168.178.29:9105"]
+        labels:
+          device: "esp32"
+          endpoint: "json"
+          sensor: "SENS01"
+      - targets: ["192.168.178.29:9106"]
+        labels:
+          device: "esp32"
+          endpoint: "json"
+          sensor: "SENS02"
+    
+    relabel_configs:
+      - source_labels: [sensor]
+        target_label: instance   
+
+[...]        
+```
+## Extend for /metrics endpoints
+### Extend prometheus.yml
+```console
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+[...]
+  - job_name: "esp32_metrics"
+    scrape_interval: 5m
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["192.168.178.37:8000"]
+        labels:
+          device: "esp32"
+          endpoint: "metrics"
+          sensor: "SENS01"
+      - targets: ["192.168.178.38:8000"]
+        labels:
+          device: "esp32"
+          endpoint: "metrics"
+          sensor: "SENS02"    
+    
+    relabel_configs:
+      - source_labels: [sensor]
+        target_label: instance
+
+    metric_relabel_configs:
+      # drop high-freq from /json
+      - source_labels: [__name__]
+        regex: 'esp32_(temperature_celsius|humidity_percent|pressure_hpa|eco2_ppm|tvoc_ppb)'
+        action: drop
+
+[...]        
+```
+
+## Refactor Docker Container
+Apply compose changes + remove old renamed containers
+```console
+docker compose up -d --build --remove-orphans
+```
+Reload Prometheus config
+```console
+docker exec -it prometheus_track kill -HUP 1
+```
