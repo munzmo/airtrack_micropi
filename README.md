@@ -25,11 +25,10 @@ mpremote connect /dev/ttyUSB0 repl
 ## Copy local to board
 ### Copy to board
 ```console
-mpremote connect /dev/ttyUSB0 fs put boot.py :boot.py
-mpremote connect /dev/ttyUSB0 fs put main.py :main.py
-mpremote connect /dev/ttyUSB0 fs put secrets.py :secrets.py
-mpremote connect /dev/ttyUSB0 fs put wpse342.py :wpse342.py
-mpremote connect /dev/ttyUSB0 fs put wpse342_read.py :wpse342_read.py
+mpremote connect /dev/ttyUSB0 cp main.py :main.py
+mpremote connect /dev/ttyUSB0 cp secrets.py :secrets.py
+mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
+mpremote connect /dev/ttyUSB0 cp wpse342_read.py :wpse342_read.py
 ```
 ### Reset board - like reset button
 ```console

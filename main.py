@@ -1,7 +1,9 @@
-# main.py
 from machine import Pin, I2C
 import time
 import socket
+import network
+import ntptime
+import secrets
 
 from wpse342 import BME280, CCS811
 
@@ -11,12 +13,25 @@ BME_ADDR = 0x77
 CCS_ADDR = 0x5B
 
 SAMPLE_MS = 2000
+HTTP_PORT = getattr(secrets, "HTTP_PORT", 8000)
 
+# --- WLAN ---
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+
+if not wlan.isconnected():
+    wlan.connect(secrets.WIFI_SSID, secrets.WIFI_PSK)
+    for _ in range(60):
+        if wlan.isconnected():
+            break
+        time.sleep(0.5)
+
+# --- NTP ---
+ntptime.host = getattr(secrets, "NTP_HOST", "pool.ntp.org")
 try:
-    import secrets
-    HTTP_PORT = getattr(secrets, "HTTP_PORT", 8000)
+    ntptime.settime()
 except Exception:
-    HTTP_PORT = 8000
+    pass
 
 i2c = I2C(0, sda=Pin(SDA), scl=Pin(SCL), freq=100_000)
 
