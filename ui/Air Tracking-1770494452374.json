@@ -99,6 +99,7 @@
         "x": 0,
         "y": 1
       },
+      "hideTimeOverride": true,
       "id": 3,
       "options": {
         "colorMode": "value",
@@ -131,6 +132,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Temperature Living Room",
       "type": "stat"
     },
@@ -194,6 +196,7 @@
         "x": 4,
         "y": 1
       },
+      "hideTimeOverride": true,
       "id": 4,
       "options": {
         "colorMode": "value",
@@ -226,6 +229,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Humidity Living Room",
       "type": "stat"
     },
@@ -285,6 +289,7 @@
         "x": 8,
         "y": 1
       },
+      "hideTimeOverride": true,
       "id": 7,
       "options": {
         "colorMode": "value",
@@ -317,6 +322,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Barometric Pressure Living Room",
       "type": "stat"
     },
@@ -380,6 +386,7 @@
         "x": 12,
         "y": 1
       },
+      "hideTimeOverride": true,
       "id": 12,
       "options": {
         "colorMode": "value",
@@ -412,6 +419,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Carbon Dioxide Value Living Room",
       "type": "stat"
     },
@@ -475,6 +483,7 @@
         "x": 16,
         "y": 1
       },
+      "hideTimeOverride": true,
       "id": 14,
       "options": {
         "colorMode": "value",
@@ -507,6 +516,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Parts per Billion Living Room",
       "type": "stat"
     },
@@ -574,6 +584,7 @@
         "x": 0,
         "y": 5
       },
+      "hideTimeOverride": true,
       "id": 18,
       "options": {
         "colorMode": "value",
@@ -606,6 +617,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Temperature Bathroom",
       "type": "stat"
     },
@@ -669,6 +681,7 @@
         "x": 4,
         "y": 5
       },
+      "hideTimeOverride": true,
       "id": 19,
       "options": {
         "colorMode": "value",
@@ -701,6 +714,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Humidity Bathroom",
       "type": "stat"
     },
@@ -760,6 +774,7 @@
         "x": 8,
         "y": 5
       },
+      "hideTimeOverride": true,
       "id": 20,
       "options": {
         "colorMode": "value",
@@ -792,6 +807,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Barometric Pressure Bathroom",
       "type": "stat"
     },
@@ -855,6 +871,7 @@
         "x": 12,
         "y": 5
       },
+      "hideTimeOverride": true,
       "id": 21,
       "options": {
         "colorMode": "value",
@@ -887,6 +904,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Carbon Dioxide Value Bathroom",
       "type": "stat"
     },
@@ -950,6 +968,7 @@
         "x": 16,
         "y": 5
       },
+      "hideTimeOverride": true,
       "id": 22,
       "options": {
         "colorMode": "value",
@@ -982,6 +1001,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Parts per Billion Bathroom",
       "type": "stat"
     },
@@ -1049,6 +1069,7 @@
         "x": 0,
         "y": 9
       },
+      "hideTimeOverride": true,
       "id": 34,
       "options": {
         "colorMode": "value",
@@ -1081,6 +1102,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Temperature Bedroom",
       "type": "stat"
     },
@@ -1144,6 +1166,7 @@
         "x": 4,
         "y": 9
       },
+      "hideTimeOverride": true,
       "id": 35,
       "options": {
         "colorMode": "value",
@@ -1176,6 +1199,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Humidity Bedroom",
       "type": "stat"
     },
@@ -1235,6 +1259,7 @@
         "x": 8,
         "y": 9
       },
+      "hideTimeOverride": true,
       "id": 36,
       "options": {
         "colorMode": "value",
@@ -1267,6 +1292,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Barometric Pressure Bedroom",
       "type": "stat"
     },
@@ -1330,6 +1356,7 @@
         "x": 12,
         "y": 9
       },
+      "hideTimeOverride": true,
       "id": 37,
       "options": {
         "colorMode": "value",
@@ -1362,6 +1389,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Carbon Dioxide Value Bedroom",
       "type": "stat"
     },
@@ -1425,6 +1453,7 @@
         "x": 16,
         "y": 9
       },
+      "hideTimeOverride": true,
       "id": 38,
       "options": {
         "colorMode": "value",
@@ -1457,11 +1486,12 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "1m",
       "title": "Parts per Billion Bedroom",
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1469,672 +1499,671 @@
         "y": 13
       },
       "id": 5,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "blue",
-                    "value": 0
-                  },
-                  {
-                    "color": "light-blue",
-                    "value": 10
-                  },
-                  {
-                    "color": "green",
-                    "value": 15
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 22
-                  },
-                  {
-                    "color": "#EF843C",
-                    "value": 25
-                  },
-                  {
-                    "color": "#E24D42",
-                    "value": 27
-                  }
-                ]
-              },
-              "unit": "celsius"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_temperature_celsius"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 15
-          },
-          "id": 1,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.3.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_temperature_celsius{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Temperature Living Room",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "orange",
-                    "value": 0
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 30
-                  },
-                  {
-                    "color": "green",
-                    "value": 40
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 50
-                  },
-                  {
-                    "color": "red",
-                    "value": 60
-                  }
-                ]
-              },
-              "unit": "humidity"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_humidity_percent"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 15
-          },
-          "id": 2,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.3.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_humidity_percent{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Humidity Living Room",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-orange",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 1005
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 1025
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 1035
-                  }
-                ]
-              },
-              "unit": "pressurehpa"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_pressure_hpa"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 47
-          },
-          "id": 6,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.3.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_pressure_hpa{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Barometric Pressure Living Room",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "light-green",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 150
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 300
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 600
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 1000
-                  }
-                ]
-              },
-              "unit": "conppb"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_tvoc_ppb"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 47
-          },
-          "id": 13,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.3.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_tvoc_ppb{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Parts per Billion Living Room",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "light-green",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 800
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 1000
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 1400
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 2000
-                  }
-                ]
-              },
-              "unit": "ppm"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_eco2_ppm"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 55
-          },
-          "id": 11,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.3.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_eco2_ppm{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Carbon Dioxide Value Living Room",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Time Series Living Room",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "light-blue",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "yellow",
+                "value": 22
+              },
+              {
+                "color": "#EF843C",
+                "value": 25
+              },
+              {
+                "color": "#E24D42",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "esp32_json_temperature_celsius"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SENS01 |"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "esp32_json_temperature_celsius{sensor=\"SENS01\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Temperature Living Room",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 40
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "esp32_json_humidity_percent"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SENS01 |"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "esp32_json_humidity_percent{sensor=\"SENS01\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Humidity Living Room",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-orange",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 1005
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 1025
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 1035
+              }
+            ]
+          },
+          "unit": "pressurehpa"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "esp32_json_pressure_hpa"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SENS01 |"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "esp32_json_pressure_hpa{sensor=\"SENS01\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Barometric Pressure Living Room",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 150
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 300
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 600
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "conppb"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "esp32_json_tvoc_ppb"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SENS01 |"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "esp32_json_tvoc_ppb{sensor=\"SENS01\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Parts per Billion Living Room",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 800
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 1000
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 1400
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "esp32_json_eco2_ppm"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SENS01 |"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 30
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "esp32_json_eco2_ppm{sensor=\"SENS01\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Carbon Dioxide Value Living Room",
+      "type": "timeseries"
     },
     {
       "collapsed": true,
@@ -2142,7 +2171,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 38
       },
       "id": 30,
       "panels": [
@@ -2245,7 +2274,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 39
           },
           "id": 25,
           "options": {
@@ -2375,7 +2404,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 39
           },
           "id": 26,
           "options": {
@@ -2504,7 +2533,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 24
+            "y": 59
           },
           "id": 27,
           "options": {
@@ -2637,7 +2666,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 24
+            "y": 59
           },
           "id": 28,
           "options": {
@@ -2770,7 +2799,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 32
+            "y": 67
           },
           "id": 29,
           "options": {
@@ -2818,7 +2847,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 39
       },
       "id": 39,
       "panels": [
@@ -2921,7 +2950,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 76
           },
           "id": 40,
           "options": {
@@ -3051,7 +3080,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 41
+            "y": 76
           },
           "id": 41,
           "options": {
@@ -3180,7 +3209,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 49
+            "y": 84
           },
           "id": 42,
           "options": {
@@ -3313,7 +3342,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 49
+            "y": 84
           },
           "id": 43,
           "options": {
@@ -3446,7 +3475,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 92
           },
           "id": 44,
           "options": {
@@ -3494,7 +3523,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 40
       },
       "id": 15,
       "panels": [
@@ -3503,7 +3532,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS01 Uptime",
+          "description": "Living Room Uptime",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3541,8 +3570,9 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 13
+            "y": 41
           },
+          "hideTimeOverride": true,
           "id": 8,
           "options": {
             "colorMode": "value",
@@ -3575,6 +3605,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Uptime Sensor 1",
           "type": "stat"
         },
@@ -3583,7 +3614,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS01 WLAN Signal Strenght",
+          "description": "Living Room WLAN Signal Strenght",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3637,8 +3668,9 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 13
+            "y": 41
           },
+          "hideTimeOverride": true,
           "id": 9,
           "options": {
             "colorMode": "value",
@@ -3671,6 +3703,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Signal Strength Sensor 1",
           "type": "stat"
         },
@@ -3679,7 +3712,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS01 Last Poll",
+          "description": "Living Room Last Poll",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3733,8 +3766,9 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 13
+            "y": 41
           },
+          "hideTimeOverride": true,
           "id": 16,
           "options": {
             "colorMode": "value",
@@ -3767,6 +3801,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 1",
           "type": "stat"
         },
@@ -3775,7 +3810,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS02 Uptime",
+          "description": "Bathroom Uptime",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3803,7 +3838,7 @@
                 "properties": [
                   {
                     "id": "displayName",
-                    "value": "SENS01"
+                    "value": "SENS02"
                   }
                 ]
               }
@@ -3813,8 +3848,9 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 89
+            "y": 45
           },
+          "hideTimeOverride": true,
           "id": 17,
           "options": {
             "colorMode": "value",
@@ -3847,6 +3883,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Uptime Sensor 2",
           "type": "stat"
         },
@@ -3855,7 +3892,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS02 WLAN Signal Strenght",
+          "description": "Bathroom WLAN Signal Strenght",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3909,8 +3946,9 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 89
+            "y": 45
           },
+          "hideTimeOverride": true,
           "id": 23,
           "options": {
             "colorMode": "value",
@@ -3943,6 +3981,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Signal Strength Sensor 2",
           "type": "stat"
         },
@@ -3951,7 +3990,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS02 Last Poll",
+          "description": "Bathroom Last Poll",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -4005,8 +4044,9 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 89
+            "y": 45
           },
+          "hideTimeOverride": true,
           "id": 24,
           "options": {
             "colorMode": "value",
@@ -4039,6 +4079,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 2",
           "type": "stat"
         },
@@ -4047,7 +4088,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS02 Uptime",
+          "description": "Bedroom Uptime",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -4075,7 +4116,7 @@
                 "properties": [
                   {
                     "id": "displayName",
-                    "value": "SENS01"
+                    "value": "SENS03"
                   }
                 ]
               }
@@ -4085,8 +4126,9 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 93
+            "y": 49
           },
+          "hideTimeOverride": true,
           "id": 31,
           "options": {
             "colorMode": "value",
@@ -4119,7 +4161,8 @@
               "refId": "A"
             }
           ],
-          "title": "Uptime Sensor 2",
+          "timeFrom": "1m",
+          "title": "Uptime Sensor 3",
           "type": "stat"
         },
         {
@@ -4127,7 +4170,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS03 WLAN Signal Strenght",
+          "description": "Bedroom WLAN Signal Strenght",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -4171,7 +4214,7 @@
                 "properties": [
                   {
                     "id": "displayName",
-                    "value": "SENS02"
+                    "value": "SENS03"
                   }
                 ]
               }
@@ -4181,8 +4224,9 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 93
+            "y": 49
           },
+          "hideTimeOverride": true,
           "id": 32,
           "options": {
             "colorMode": "value",
@@ -4215,6 +4259,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Signal Strength Sensor 3",
           "type": "stat"
         },
@@ -4223,7 +4268,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "description": "SENS03 Last Poll",
+          "description": "Bedroom Last Poll",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -4277,8 +4322,9 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 93
+            "y": 49
           },
+          "hideTimeOverride": true,
           "id": 33,
           "options": {
             "colorMode": "value",
@@ -4311,6 +4357,7 @@
               "refId": "A"
             }
           ],
+          "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 3",
           "type": "stat"
         }
@@ -4334,5 +4381,5 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 38
+  "version": 47
 }
