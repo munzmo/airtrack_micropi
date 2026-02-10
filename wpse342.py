@@ -127,6 +127,15 @@ class CCS811:
     def _w8(self, reg, v):
         self.i2c.writeto_mem(self.addr, reg, bytes([v]))
 
+    # Baseline managment I
+    def get_baseline(self):
+        d = self._rN(0x11, 2)
+        return (d[0] << 8) | d[1]
+    # Baseline managment II
+    def set_baseline(self, baseline):
+        self.i2c.writeto_mem(self.addr, 0x11,
+            bytes([(baseline >> 8) & 0xFF, baseline & 0xFF]))
+
     def ready(self):
         return (self._r8(self.REG_STATUS) & 0x08) != 0
 

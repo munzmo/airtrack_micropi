@@ -4,6 +4,7 @@ import socket
 import network
 import ntptime
 import secrets
+import json
 
 from wpse342 import BME280, CCS811
 
@@ -41,6 +42,19 @@ print("I2C:", [hex(a) for a in addrs])
 
 bme = BME280(i2c, addr=BME_ADDR)
 ccs = CCS811(i2c, addr=CCS_ADDR)
+
+BASELINE_FILE = "ccs811_baseline.json"
+BASELINE_SAVE_MS = 12 * 3600 * 1000  # save all 12h
+
+# load baseline
+try:
+    with open(BASELINE_FILE, "r") as f:
+        ccs.set_baseline(json.load(f)["bl"])
+        print("baseline: loaded")
+except:
+    print("baseline: none found, fresh start")
+
+last_baseline_save = time.ticks_ms()
 
 latest = {
     "ms": 0,
@@ -177,6 +191,18 @@ while True:
                 latest["eco2"], latest["tvoc"] = eco2, tvoc
             else:
                 latest["eco2"], latest["tvoc"] = None, None
+        
+        # Baseline periodically save
+        if time.ticks_diff(now, last_baseline_save) >= BASELINE_SAVE_MS:
+            try:
+                bl = ccs.get_baseline()
+                with open(BASELINE_FILE, "w") as f:
+                    json.dump({"bl": bl}, f)
+                print("baseline: saved", bl)
+                last_baseline_save = now
+            except:
+                pass
+
 
         # debugging/logging
         print(build_json().strip())
