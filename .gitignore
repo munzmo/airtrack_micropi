@@ -12,3 +12,6 @@ __pycache__/
 
 # Secrets
 secrets.py
+
+# memory
+.claude_mem_py

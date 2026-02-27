@@ -4,17 +4,52 @@ A brief description of what this project does and who it's for
 
 
 ## Monitoring points wpse342
+
+### Wiring
+
+| Sensor Pin | Signal | ESP32 Pin |
+|------------|--------|-----------|
+| 3.3V | Power | 3.3V |
+| GND  | Ground | GND |
+| SDA  | I2C Data | GPIO21 |
+| SCL  | I2C Clock | GPIO22 |
+
 ### Chip BME280
 * **t**: Temperature in Unit **°C**
 * **rh**: Relative humidity in **%**
 * **p**: Barometric pressure in **hPa**
 
 ### Chip CCS811
-* **eco2**: Equivalent CO₂ in Unit **ppm** (vom **CCS811**). 
+* **eco2**: Equivalent CO₂ in Unit **ppm** (from **CCS811**).
   * Not a true CO₂ meter, but calculated from VOC signals.
 
-* **tvoc**: Total Volatile Organic Compounds in **ppb** (vom **CCS811**)
+* **tvoc**: Total Volatile Organic Compounds in **ppb** (from **CCS811**)
   * Volatile organic compounds as a total value.
+
+## Fan — Noctua NF-A4x10 5V PWM
+
+A 4-pin PWM fan is connected to the board for active airflow. RPM readout is not used.
+
+### Wiring
+
+| Fan Pin | Signal | ESP32 Pin |
+|---------|--------|-----------|
+| 1 (Black) | GND | GND |
+| 2 (Red)   | +5V | VIN (5V) |
+| 3 (Yellow)| RPM | — (not connected) |
+| 4 (Blue)  | PWM | GPIO18 |
+
+### Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| PWM frequency | 25 kHz (Intel 4-pin fan spec) |
+| Duty cycle | 20% (fixed, ~1050 RPM) |
+| PWM logic level | 3.3V (compatible with Noctua fans) |
+
+Configured in `main.py` via `FAN_PIN`, `FAN_FREQ`, `FAN_DUTY`.
+
+---
 
 ## Connect to board
 REPL connect
@@ -94,15 +129,15 @@ esp32_json_exporter_poll_seconds
 ## Low-Frequency
 These metrics come directly from the ESP32 /metrics.
 
-- Uptime seit letztem Boot (Sekunden)
+- Uptime since last boot (seconds)
 ```console
 esp32_uptime_seconds
 ```
-- Unix-Zeit des ESP32 (UTC)
+- Unix time of the ESP32 (UTC)
 ```console
 esp32_unix_time_seconds
 ```
-- WLAN-Signalstärke in dBm
+- WiFi signal strength in dBm
 ```console
 esp32_wifi_rssi_dbm
 ```

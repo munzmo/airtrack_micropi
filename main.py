@@ -1,4 +1,4 @@
-from machine import Pin, I2C
+from machine import Pin, I2C, PWM
 import time
 import socket
 import network
@@ -12,6 +12,14 @@ SDA = 21
 SCL = 22
 BME_ADDR = 0x77
 CCS_ADDR = 0x5B
+
+FAN_PIN  = 18
+FAN_FREQ = 25_000        # Hz, Intel 4-pin PWM spec
+FAN_DUTY = 20            # percent (0–100)
+
+fan = PWM(Pin(FAN_PIN), freq=FAN_FREQ)
+fan.duty_u16(int(65535 * FAN_DUTY / 100))
+print("fan: GPIO%d  %d%%  %dHz" % (FAN_PIN, FAN_DUTY, FAN_FREQ))
 
 SAMPLE_MS = 2000
 HTTP_PORT = getattr(secrets, "HTTP_PORT", 8000)
