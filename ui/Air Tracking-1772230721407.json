@@ -19,7 +19,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
   "links": [],
   "panels": [
     {
@@ -109,7 +108,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -118,7 +117,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -206,7 +205,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -215,7 +214,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -299,7 +298,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -308,7 +307,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -396,7 +395,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -405,7 +404,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -493,7 +492,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -502,7 +501,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -594,7 +593,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -603,7 +602,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -691,7 +690,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -700,7 +699,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -784,7 +783,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -793,7 +792,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -881,7 +880,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -890,7 +889,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -978,7 +977,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -987,7 +986,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1079,7 +1078,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1088,7 +1087,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1176,7 +1175,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1185,7 +1184,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1269,7 +1268,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1278,7 +1277,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1366,7 +1365,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1375,7 +1374,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1463,7 +1462,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1472,7 +1471,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1858,7 +1857,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 22
+            "y": 142
           },
           "id": 6,
           "options": {
@@ -1991,7 +1990,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 22
+            "y": 142
           },
           "id": 13,
           "options": {
@@ -2124,7 +2123,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 30
+            "y": 150
           },
           "id": 11,
           "options": {
@@ -2275,7 +2274,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 39
+            "y": 15
           },
           "id": 25,
           "options": {
@@ -2296,7 +2295,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2405,7 +2404,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 39
+            "y": 15
           },
           "id": 26,
           "options": {
@@ -2426,7 +2425,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2534,7 +2533,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 47
+            "y": 23
           },
           "id": 27,
           "options": {
@@ -2555,7 +2554,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2667,7 +2666,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 47
+            "y": 23
           },
           "id": 28,
           "options": {
@@ -2688,7 +2687,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2800,7 +2799,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 55
+            "y": 31
           },
           "id": 29,
           "options": {
@@ -2821,7 +2820,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2951,7 +2950,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 16
           },
           "id": 40,
           "options": {
@@ -2972,7 +2971,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3081,7 +3080,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 16
           },
           "id": 41,
           "options": {
@@ -3102,7 +3101,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3210,7 +3209,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 72
+            "y": 24
           },
           "id": 42,
           "options": {
@@ -3231,7 +3230,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3343,7 +3342,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 72
+            "y": 24
           },
           "id": 43,
           "options": {
@@ -3364,7 +3363,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3476,7 +3475,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 80
+            "y": 32
           },
           "id": 44,
           "options": {
@@ -3497,7 +3496,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3571,7 +3570,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 89
+            "y": 209
           },
           "hideTimeOverride": true,
           "id": 8,
@@ -3673,7 +3672,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 89
+            "y": 209
           },
           "hideTimeOverride": true,
           "id": 9,
@@ -3771,7 +3770,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 89
+            "y": 209
           },
           "hideTimeOverride": true,
           "id": 16,
@@ -3853,7 +3852,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 93
+            "y": 213
           },
           "hideTimeOverride": true,
           "id": 17,
@@ -3955,7 +3954,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 93
+            "y": 213
           },
           "hideTimeOverride": true,
           "id": 23,
@@ -4053,7 +4052,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 93
+            "y": 213
           },
           "hideTimeOverride": true,
           "id": 24,
@@ -4135,7 +4134,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 97
+            "y": 217
           },
           "hideTimeOverride": true,
           "id": 31,
@@ -4237,7 +4236,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 97
+            "y": 217
           },
           "hideTimeOverride": true,
           "id": 32,
@@ -4335,7 +4334,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 97
+            "y": 217
           },
           "hideTimeOverride": true,
           "id": 33,
@@ -4394,5 +4393,6 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 48
+  "version": 49,
+  "weekStart": ""
 }
