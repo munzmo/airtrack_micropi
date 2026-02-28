@@ -15,7 +15,7 @@ CCS_ADDR = 0x5B
 
 FAN_PIN  = 18
 FAN_FREQ = 25_000        # Hz, Intel 4-pin PWM spec
-FAN_DUTY = 20            # percent (0–100)
+FAN_DUTY = 50            # percent (0–100)
 
 fan = PWM(Pin(FAN_PIN), freq=FAN_FREQ)
 fan.duty_u16(int(65535 * FAN_DUTY / 100))

@@ -44,7 +44,7 @@ A 4-pin PWM fan is connected to the board for active airflow. RPM readout is not
 | Parameter | Value |
 |-----------|-------|
 | PWM frequency | 25 kHz (Intel 4-pin fan spec) |
-| Duty cycle | 20% (fixed, ~1050 RPM) |
+| Duty cycle | 50% (fixed) |
 | PWM logic level | 3.3V (compatible with Noctua fans) |
 
 Configured in `main.py` via `FAN_PIN`, `FAN_FREQ`, `FAN_DUTY`.
