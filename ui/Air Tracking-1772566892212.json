@@ -29,6 +29,1216 @@
         "x": 0,
         "y": 0
       },
+      "id": 45,
+      "panels": [],
+      "title": "Outdoor temperature",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": 0
+              },
+              {
+                "color": "light-blue",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "yellow",
+                "value": 22
+              },
+              {
+                "color": "#EF843C",
+                "value": 25
+              },
+              {
+                "color": "#E24D42",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_temperature_celsius"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 34,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_temperature_celsius{location=\"Münchsmünster\"}\r\n",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "1m",
+      "title": "Temperature MüMü",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": 0
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 20
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 30
+              },
+              {
+                "color": "light-orange",
+                "value": 40
+              },
+              {
+                "color": "light-green",
+                "value": 70
+              },
+              {
+                "color": "super-light-green",
+                "value": 75
+              },
+              {
+                "color": "light-blue",
+                "value": 80
+              },
+              {
+                "color": "blue",
+                "value": 90
+              },
+              {
+                "color": "dark-blue",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_humidity_percent"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_humidity_percent{location=\"Münchsmünster\"}\r\n",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "1m",
+      "title": "Humidity MüMü",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": 0
+              },
+              {
+                "color": "light-blue",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "yellow",
+                "value": 22
+              },
+              {
+                "color": "#EF843C",
+                "value": 25
+              },
+              {
+                "color": "#E24D42",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_apparent_temperature_celsius"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 51,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_apparent_temperature_celsius{location=\"Münchsmünster\"}\r\n",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "1m",
+      "title": "Wind Chill MüMü",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": 0
+              },
+              {
+                "color": "light-green",
+                "value": 1
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "light-orange",
+                "value": 15
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "mm/h"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_precipitation_mm"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 53,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_precipitation_mm{location=\"Münchsmünster\"}\r\n",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "1m",
+      "title": "Precipitation MüMü",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 20
+              },
+              {
+                "color": "super-light-orange",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 62
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "velocityms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_wind_speed_kmh"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 55,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_wind_speed_kmh{location=\"Münchsmünster\"}\r\n",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "1m",
+      "title": "Wind Speed MüMü",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "light-blue",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "yellow",
+                "value": 22
+              },
+              {
+                "color": "#EF843C",
+                "value": 25
+              },
+              {
+                "color": "#E24D42",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_temperature_celsius"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_temperature_celsius{location=\"Münchsmünster\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Temperature Münchsmünster",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": 0
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 20
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 30
+              },
+              {
+                "color": "light-orange",
+                "value": 40
+              },
+              {
+                "color": "light-green",
+                "value": 70
+              },
+              {
+                "color": "super-light-green",
+                "value": 75
+              },
+              {
+                "color": "light-blue",
+                "value": 80
+              },
+              {
+                "color": "blue",
+                "value": 90
+              },
+              {
+                "color": "dark-blue",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_humidity_percent"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_humidity_percent{location=\"Münchsmünster\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Humidity Münchsmünster",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "light-blue",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "yellow",
+                "value": 22
+              },
+              {
+                "color": "#EF843C",
+                "value": 25
+              },
+              {
+                "color": "#E24D42",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_apparent_temperature_celsius"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 50,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_apparent_temperature_celsius{location=\"Münchsmünster\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Wind Chill Münchsmünster",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 20,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": 0
+              },
+              {
+                "color": "light-green",
+                "value": 1
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "light-orange",
+                "value": 15
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "mm/h"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_precipitation_mm"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 52,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_precipitation_mm{location=\"Münchsmünster\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Precipitation Münchsmünster",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 20
+              },
+              {
+                "color": "super-light-orange",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 62
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "velocityms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weather_wind_speed_kmh"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "open-meteo.com API"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "id": 54,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "weather_wind_speed_kmh{location=\"Münchsmünster\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Wind Speed Münchsmünster",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
       "id": 10,
       "panels": [],
       "title": "Current Data",
@@ -96,7 +1306,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 1
+        "y": 30
       },
       "hideTimeOverride": true,
       "id": 3,
@@ -193,10 +1403,10 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 1
+        "y": 30
       },
       "hideTimeOverride": true,
-      "id": 4,
+      "id": 48,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -286,7 +1496,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 1
+        "y": 30
       },
       "hideTimeOverride": true,
       "id": 7,
@@ -383,7 +1593,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 1
+        "y": 30
       },
       "hideTimeOverride": true,
       "id": 12,
@@ -480,7 +1690,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 1
+        "y": 30
       },
       "hideTimeOverride": true,
       "id": 14,
@@ -581,7 +1791,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 5
+        "y": 34
       },
       "hideTimeOverride": true,
       "id": 18,
@@ -678,7 +1888,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 5
+        "y": 34
       },
       "hideTimeOverride": true,
       "id": 19,
@@ -771,7 +1981,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 5
+        "y": 34
       },
       "hideTimeOverride": true,
       "id": 20,
@@ -868,7 +2078,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 5
+        "y": 34
       },
       "hideTimeOverride": true,
       "id": 21,
@@ -965,7 +2175,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 5
+        "y": 34
       },
       "hideTimeOverride": true,
       "id": 22,
@@ -1066,10 +2276,10 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 9
+        "y": 38
       },
       "hideTimeOverride": true,
-      "id": 34,
+      "id": 46,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1163,7 +2373,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 9
+        "y": 38
       },
       "hideTimeOverride": true,
       "id": 35,
@@ -1256,7 +2466,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 9
+        "y": 38
       },
       "hideTimeOverride": true,
       "id": 36,
@@ -1353,7 +2563,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 9
+        "y": 38
       },
       "hideTimeOverride": true,
       "id": 37,
@@ -1450,7 +2660,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 9
+        "y": 38
       },
       "hideTimeOverride": true,
       "id": 38,
@@ -1495,7 +2705,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 42
       },
       "id": 5,
       "panels": [
@@ -1598,7 +2808,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 14
+            "y": 83
           },
           "id": 1,
           "options": {
@@ -1619,7 +2829,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -1728,9 +2938,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 14
+            "y": 83
           },
-          "id": 2,
+          "id": 49,
           "options": {
             "legend": {
               "calcs": [
@@ -1749,7 +2959,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -1857,7 +3067,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 142
+            "y": 91
           },
           "id": 6,
           "options": {
@@ -1878,7 +3088,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -1990,7 +3200,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 142
+            "y": 91
           },
           "id": 13,
           "options": {
@@ -2011,7 +3221,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2123,7 +3333,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 150
+            "y": 99
           },
           "id": 11,
           "options": {
@@ -2144,7 +3354,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -2171,7 +3381,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 43
       },
       "id": 30,
       "panels": [
@@ -2274,7 +3484,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 15
+            "y": 108
           },
           "id": 25,
           "options": {
@@ -2404,7 +3614,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 15
+            "y": 108
           },
           "id": 26,
           "options": {
@@ -2533,7 +3743,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 23
+            "y": 116
           },
           "id": 27,
           "options": {
@@ -2666,7 +3876,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 23
+            "y": 116
           },
           "id": 28,
           "options": {
@@ -2799,7 +4009,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 124
           },
           "id": 29,
           "options": {
@@ -2847,7 +4057,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 44
       },
       "id": 39,
       "panels": [
@@ -2950,7 +4160,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 133
           },
           "id": 40,
           "options": {
@@ -3080,7 +4290,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 133
           },
           "id": 41,
           "options": {
@@ -3209,7 +4419,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 24
+            "y": 141
           },
           "id": 42,
           "options": {
@@ -3342,7 +4552,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 24
+            "y": 141
           },
           "id": 43,
           "options": {
@@ -3475,7 +4685,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 32
+            "y": 149
           },
           "id": 44,
           "options": {
@@ -3523,7 +4733,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 45
       },
       "id": 15,
       "panels": [
@@ -3570,7 +4780,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 209
+            "y": 158
           },
           "hideTimeOverride": true,
           "id": 8,
@@ -3591,7 +4801,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3672,7 +4882,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 209
+            "y": 158
           },
           "hideTimeOverride": true,
           "id": 9,
@@ -3693,7 +4903,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3770,7 +4980,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 209
+            "y": 158
           },
           "hideTimeOverride": true,
           "id": 16,
@@ -3791,7 +5001,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3852,7 +5062,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 213
+            "y": 162
           },
           "hideTimeOverride": true,
           "id": 17,
@@ -3873,7 +5083,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -3954,7 +5164,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 213
+            "y": 162
           },
           "hideTimeOverride": true,
           "id": 23,
@@ -3975,7 +5185,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -4052,7 +5262,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 213
+            "y": 162
           },
           "hideTimeOverride": true,
           "id": 24,
@@ -4073,7 +5283,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -4134,7 +5344,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 217
+            "y": 166
           },
           "hideTimeOverride": true,
           "id": 31,
@@ -4155,7 +5365,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -4236,7 +5446,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 217
+            "y": 166
           },
           "hideTimeOverride": true,
           "id": 32,
@@ -4257,7 +5467,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -4334,7 +5544,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 217
+            "y": 166
           },
           "hideTimeOverride": true,
           "id": 33,
@@ -4355,7 +5565,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.3.2",
+          "pluginVersion": "12.4.0",
           "targets": [
             {
               "datasource": {
@@ -4393,6 +5603,6 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 49,
+  "version": 65,
   "weekStart": ""
 }
