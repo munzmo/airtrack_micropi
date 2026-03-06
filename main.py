@@ -52,7 +52,8 @@ bme = BME280(i2c, addr=BME_ADDR)
 ccs = CCS811(i2c, addr=CCS_ADDR)
 
 BASELINE_FILE = "ccs811_baseline.json"
-BASELINE_SAVE_MS = 12 * 3600 * 1000  # save all 12h
+BASELINE_SAVE_MS  = 12 * 3600 * 1000  # save all 12h
+BASELINE_ECO2_MAX = 700               # ppm — only save in clean air
 
 # load baseline
 try:
@@ -200,16 +201,19 @@ while True:
             else:
                 latest["eco2"], latest["tvoc"] = None, None
         
-        # Baseline periodically save
+        # Baseline periodically save — only in clean air
         if time.ticks_diff(now, last_baseline_save) >= BASELINE_SAVE_MS:
-            try:
-                bl = ccs.get_baseline()
-                with open(BASELINE_FILE, "w") as f:
-                    json.dump({"bl": bl}, f)
-                print("baseline: saved", bl)
-                last_baseline_save = now
-            except:
-                pass
+            last_baseline_save = now  # always reset; retry in 12h regardless
+            if latest["eco2"] is not None and latest["eco2"] < BASELINE_ECO2_MAX:
+                try:
+                    bl = ccs.get_baseline()
+                    with open(BASELINE_FILE, "w") as f:
+                        json.dump({"bl": bl}, f)
+                    print("baseline: saved", bl)
+                except:
+                    pass
+            else:
+                print("baseline: skipped (eco2=%s >= %d, air not clean)" % (latest["eco2"], BASELINE_ECO2_MAX))
 
 
         # debugging/logging

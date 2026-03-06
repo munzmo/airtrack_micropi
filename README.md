@@ -70,6 +70,15 @@ mpremote connect /dev/ttyUSB0 cp wpse342_read.py :wpse342_read.py
 mpremote connect /dev/ttyUSB0 reset
 ```
 
+### Reset CCS811 baseline (clean start)
+The baseline is stored persistently in flash and survives power cycles and file uploads.
+Delete it explicitly before a clean restart to avoid carrying over a corrupted baseline:
+```console
+mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
+```
+The sensor will then recalibrate from scratch (~20–48h until stable readings).
+The baseline is only saved automatically when eCO2 < 700 ppm (clean air condition).
+
 ## Curl endpoints local network
 ### Metadata
 ```console
