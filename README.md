@@ -70,6 +70,29 @@ mpremote connect /dev/ttyUSB0 cp wpse342_read.py :wpse342_read.py
 mpremote connect /dev/ttyUSB0 reset
 ```
 
+### Flash CCS811 firmware to v2.0.1 (one-time, optional)
+Improves internal calibration algorithm. Intended for already burned-in sensors.
+**DISCLAIMER: Risk of bricking is low (bootloader untouched), but flash at own risk.**
+
+Expected output ends with `*** SUCCESS: CCS811 flashed to firmware v2.0.1 ***`.
+
+Full sequence — flash, update files, clean baseline, restart:
+```console
+# 1. Flash CCS811 firmware
+mpremote connect /dev/ttyUSB0 cp ccs811_flash.py :ccs811_flash.py
+mpremote connect /dev/ttyUSB0 run ccs811_flash.py
+
+# 2. Upload current firmware files
+mpremote connect /dev/ttyUSB0 cp main.py :main.py
+mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
+
+# 3. Delete baseline
+mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
+
+# 4. Reset — starts clean with new main.py and no baseline
+mpremote connect /dev/ttyUSB0 reset
+```
+
 ### Reset CCS811 baseline (clean start)
 The baseline is stored persistently in flash and survives power cycles and file uploads.
 Delete it explicitly before a clean restart to avoid carrying over a corrupted baseline:
@@ -77,7 +100,9 @@ Delete it explicitly before a clean restart to avoid carrying over a corrupted b
 mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
 ```
 The sensor will then recalibrate from scratch (~20–48h until stable readings).
-The baseline is only saved automatically when eCO2 < 700 ppm (clean air condition).
+
+#### How the baseline is saved automatically
+The code tracks the **lowest eCO2 value observed within each 24h window** and captures the corresponding baseline at that moment. Every 24h the best baseline of the window is written to flash and the window resets. This requires no fixed threshold and no assumptions about the environment — the cleanest observed moment of the day is always used.
 
 ## Curl endpoints local network
 ### Metadata

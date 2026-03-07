@@ -51,9 +51,8 @@ print("I2C:", [hex(a) for a in addrs])
 bme = BME280(i2c, addr=BME_ADDR)
 ccs = CCS811(i2c, addr=CCS_ADDR)
 
-BASELINE_FILE = "ccs811_baseline.json"
-BASELINE_SAVE_MS  = 12 * 3600 * 1000  # save all 12h
-BASELINE_ECO2_MAX = 700               # ppm — only save in clean air
+BASELINE_FILE    = "ccs811_baseline.json"
+BASELINE_SAVE_MS = 24 * 3600 * 1000  # save window 24h
 
 # load baseline
 try:
@@ -63,7 +62,9 @@ try:
 except:
     print("baseline: none found, fresh start")
 
-last_baseline_save = time.ticks_ms()
+last_baseline_save  = time.ticks_ms()
+eco2_min_seen   = None  # lowest eco2 observed in current 24h window
+baseline_at_min = None  # baseline captured at that minimum moment
 
 latest = {
     "ms": 0,
@@ -198,22 +199,30 @@ while True:
             eco2, tvoc, status, err = ccs.read()
             if err == 0:
                 latest["eco2"], latest["tvoc"] = eco2, tvoc
+                # minimum tracking: capture baseline at the cleanest moment seen
+                if eco2_min_seen is None or eco2 < eco2_min_seen:
+                    eco2_min_seen = eco2
+                    try:
+                        baseline_at_min = ccs.get_baseline()
+                    except:
+                        pass
             else:
                 latest["eco2"], latest["tvoc"] = None, None
-        
-        # Baseline periodically save — only in clean air
+
+        # Baseline save — store the baseline captured at the 24h eco2 minimum
         if time.ticks_diff(now, last_baseline_save) >= BASELINE_SAVE_MS:
-            last_baseline_save = now  # always reset; retry in 12h regardless
-            if latest["eco2"] is not None and latest["eco2"] < BASELINE_ECO2_MAX:
+            last_baseline_save = now
+            if baseline_at_min is not None:
                 try:
-                    bl = ccs.get_baseline()
                     with open(BASELINE_FILE, "w") as f:
-                        json.dump({"bl": bl}, f)
-                    print("baseline: saved", bl)
+                        json.dump({"bl": baseline_at_min}, f)
+                    print("baseline: saved %d at eco2_min=%d ppm" % (baseline_at_min, eco2_min_seen))
                 except:
                     pass
             else:
-                print("baseline: skipped (eco2=%s >= %d, air not clean)" % (latest["eco2"], BASELINE_ECO2_MAX))
+                print("baseline: skipped (no valid eco2 reading in window)")
+            eco2_min_seen   = None
+            baseline_at_min = None
 
 
         # debugging/logging

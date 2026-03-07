@@ -1,0 +1,259 @@
+# ccs811_flash.py
+# Flashes CCS811 sensor to firmware v2.0.1 via I2C on MicroPython (ESP32).
+# Run once via: mpremote connect /dev/ttyUSB0 run ccs811_flash.py
+#
+# DISCLAIMER: Flashing firmware carries the risk of bricking your CCS811.
+# Risk is low (only application firmware, bootloader stays intact).
+# v2.0.1 is intended for already burned-in sensors (burn-in compensation disabled).
+#
+# After successful flash: delete ccs811_baseline.json and restart main.py.
+
+from machine import Pin, I2C
+import time
+
+SDA      = 21
+SCL      = 22
+CCS_ADDR = 0x5B
+
+REG_STATUS     = 0x00
+REG_SW_RESET   = 0xFF
+REG_APP_ERASE  = 0xF1
+REG_APP_DATA   = 0xF2
+REG_APP_VERIFY = 0xF3
+
+# CCS811 firmware v2.0.1 binary (5112 bytes)
+FW = bytes.fromhex(
+    "704ef41e2da78d4ffc88804902dc1710b00e5a648c35b88981d4acb38fa3529b"
+    "8a8fa0a47e19763eb249b952e5f61e693cb1445f91a2dcd22d36352e99d1441b"
+    "0547c006e4bc914121256fb11e5e811ef6fa591dce74ed1517e7d02dded46c72"
+    "19db890e05763d9eb6daf90854b00d4a9f2cdac7ceda09dd3841f995cc91828f"
+    "99c3fb14cd77629680654cfbe269acd0b30f3037b62ec7394408e186eae45d21"
+    "57a0e6c98b287f5341b8ae1e4b32d5ed2904835c16b5f83df5e4a8e2f0c90890"
+    "e4ab0360cbf8ca2ff3505d9d2830323b596a70f10077b3a2d87bb3a7d8711cec"
+    "320ce5c7645aa97b72d51631e7d971d9bd425c9167c251bed85a3c842409dcc2"
+    "dbb98e63c38c94d4d0fef6c2b22cecd2565265452424325199d2808702ff713b"
+    "9b31a787ad771e17253b3a599e2fc5ffdc8e64a85ac0f840e609ad030bf4e6e3"
+    "73f9919db03059d36b4ea472d65d9bd6838accf64545a070e10bb2ab015951cb"
+    "917b940ffbad74968306a1b28b8bd5e6987eeccb3813af000db72024a1f545dc"
+    "a2bb2fb0ad904ac6c893f810243db487f5cd27ddaf3c35165e0d388ee3397cd6"
+    "f428c4711ce630f9ef017df4794c51937c78c12911cbb5c17f3deaf66bda02e5"
+    "78566721e2d8be7c09fa1dc9e464d3955b0c9ee101bc28bd1ff43aec15d90962"
+    "02eea1578b30d13d4056c099470668999a907dac827524ebcc4ea2b5eb2caccc"
+    "878a196f70a2c6daef7d2b18fdf24071bc5868797bd886b076593af965fc3634"
+    "307a795569d2b03f17740b0f28b6463535774f830ee3dd2da1014c7283d2d360"
+    "297697999c03730a1dfbb9d0ed6c17154075d3677d28f4109a427ad60f87a5c2"
+    "dac293b9a523fc1d6263ae6165f6bca513a29c0fba28045de3984f5306ed7030"
+    "651e1a72bce3322d2139ee09ba3d0cd986018bf43340a4820b0029ca390fd36e"
+    "5bfc22df6d663235458f3b1dbaa8d68d43604c9ca683bc668f5198557a995476"
+    "c1929c3be63a67609b80d5fc258df2206fdffbc612c1dad548b440be348186b4"
+    "394f06a83e1768ce01cf2264fb8804d873dacb0ff0a7b09e1b543e40d3c8cc17"
+    "2e1954696be94d2b4054bb75ec75ffecae60586ce66abcff9532e0760e87c483"
+    "01ff749158b719fd0b644ffd836c85d8846b676ffb409320619c885175f9eedd"
+    "d224c0f40165a4b4b9b44bcd309377f4c2aae23ba5b975c0edd10bea63b4fae7"
+    "4d465683a36450d129e565efb327146ee3cd0f19075588918b5fda219cac928b"
+    "b4fa1ab3ee1204d38e3a70d2a9862faa8d22d39f82cfbe9b8835b09e3bac1678"
+    "3ac84d690561cb8797c52dca4f81cca714a788f6d0f70eebd39df5d3a89e73b4"
+    "74a1fd8eea72dc24201a70a1923b42e024bf57b11792df48fb912f09969d2a9f"
+    "c9f878d01ef614031c7e1e0eb374a43e43487aa89447d56f13c9d73a0d90e7a8"
+    "d4ac51ab923ef9ebf38d0a2575d9b9f5c7ae9aee3eaca81fce9e872e06660865"
+    "419037110ab292562f6f8a11fb8b34b5fa7c1e57cf95394795ea08f41f5f5665"
+    "ec01e0407609029eb3b828efee56426568537272a1c57366a08cb931e918e468"
+    "c1684c7ffbf0ed5939a273e45413453a5ba6c6c48750b7239e40191091cebaf4"
+    "b4ed663e97bbb1ad1b6e1c1d1b885ff7ac6ccfe494e5b0699ec33910c5016bd6"
+    "0a3124fe755dd0f99f5ea0071037d834b93265f209317c4ac086130537c52d4c"
+    "fe32c8600f69578bd9e95dfc0ffcc6021fc2ba792c52c6d89ff13377ee48c385"
+    "631ed8e78842b2eb3737891f3b0ef35641256ed06d1d1f9a3b9797b52f02aa3f"
+    "71a4bc0aa0c7aeb8e8087aed64ee68ef29c04a07b803aae3e7296bd0406e19a4"
+    "f57dcb75972f64c6c9782e69bebfbb1022767cb1ecaa4cb398156cd9735b8b73"
+    "a404b167db7f83ae77a830b54396cf4171cf3fdd3655cb8cd8dfb3cff114eb87"
+    "cc6e90fed0cf3a5a6b07e4c4b78ca330fcec6632db3bf667018873bb64feec2b"
+    "e33c6e9ba56d22f91c7f1c10ea16afcf18684b8c2a4583aed8534f73b134cae7"
+    "7955bde338230688bb8f5bd430408f7cd312928575b0a5445bece76d45be4f81"
+    "25ee7825c6c7bb6e8c1b21a292a7c20d14726afc44eab90ea9201d7568cd0a43"
+    "239af57e316e5fc86dada1f6687cb2a7c5ad7569d5d23401d6c16dbe8f69d529"
+    "50ae2fa42c689674a128b0f095a578bcc0a6a5399534bbe37e9f973dc0681b78"
+    "021357cffa68dbee6b8d63f6200ebf1750f1936a657e33d3704f6ace0eb8f0ee"
+    "19caa2e99078421a50d486f1f513821ae439cab479d62111deffcb52877a1db8"
+    "1ac44b3fc9dad8daad6c82d4870d876fb8525877b3a8f5e2df3113125aae3faf"
+    "85d8e38ed2a35002d37c8a973958f4ca397d56ae60cab5ce9181485e3c435ebb"
+    "5186269e296f5e57c2ba3aea0f2ea73a73a09f9696f459788a5af03e8a2b4ad2"
+    "da5580afd9d5a6c3929db540038d74bb355e6ea8d58444242b0d78503a354594"
+    "f56f938544c5d225ebdcf311eeec335bc4063ae1b4273a63818279c56d2249c8"
+    "1e2eec569b6c73a7e6babcc8e6716d39b46a3f6f1ba6ce319ea07b2273e971e5"
+    "cbd6bf692f1b68262f57d8c97744d3facfa57e39e0a7a0587f206cabd9be9faa"
+    "5556dcf7f0c5cdd8a9367efbf8628311749ab0398a9871ace3074217207eefdc"
+    "ea2f6431ba08727c8b8030b830a8521d98aca1f0fed340476372e47934a5967c"
+    "7f345c741194828f7b7b02ba9cb30f24532bac05f39fa75d84614511ff3a740a"
+    "9421969e58bed1139209825f7f663b5d2b012463e2d545f1b9cdb3d15098e7fc"
+    "140c7ca4519cdbaec5f1979ccfa7b67c0b593e2ff64c24c43a35edc4a5c8cd45"
+    "15213c1bc00b0122848b945682a9bc03c54f12b3e0a4e1b98d10663eeb61c921"
+    "79c1c3265ec5b05fa28776ae350a54d6099f0a2e98ffb598ff85d9006df30526"
+    "8c63ef695f5c8278a275425f6f73835bc22f0272f4f67b2fc5c0b584bc4630fd"
+    "f7a110bf368c909466071f57b461b5b18a989e5c0ab653b56c01a8ece1c35021"
+    "bd6ce436c91c9d4a36fa216096596f2db8758e45038cc5ee0c306082995b4b79"
+    "cd68b3c0e31a6b343d951106569529617b5e86a91a5f4d98689c8d10913cbf4c"
+    "0dbc8bf78b850cf66e7e82685c7af25787d9afe50ff1b9f77eefc474bd01307e"
+    "f49326086ee9d74e1431e99db3bfeb2086102c0d94e9b31da554952b360b906a"
+    "c786bf09661200b33b2df110009b94eb0685413c750f0075283bf8555c74aa5b"
+    "cf885466fb979f23bc7963577558c49b39e93b34331ccc751b3eb9b750a9bf90"
+    "c5b9e3312352b9cdda526fa41e6f1d01920a2b97830703870b71f823234a239f"
+    "f6e3b174d17c4158fa4bb258bf004cc19abd17af77ee27632ac0d681ceba6600"
+    "0f69ead225f6ccd85ada5ed0371156ecb20499bd359fa6d92e4da78180146ee6"
+    "b7c0fc1cfa4c5abe332e81b7d216cc8457729a0ca61ec7c5641866a03ef79bc6"
+    "d99deb4faa2b89f3d2027f7cd7f5002c92a6515be44371a4af22a10cec51ff72"
+    "be1f48a5d63b73852aa2e21ecae008e3a397e3fe9be18aa1b43f81d734596546"
+    "a86d990773a418814942f383e08179e43fc69b5e63430cfa2762635a5a7abca4"
+    "622e099ff0f91b560907a518537e8a7ba22fc1f79bc28a8c1509b9fd6e5e4f47"
+    "9c30251d359a1771f277816b301026a681355dd096e17b7d9e8c5c283a9dd9e6"
+    "4ae6ce089fb63fae0a80f990629d04f03854773e22c2e1f4a5b3884ac9d3dc75"
+    "b8936f756f6b6e3c64d23a6e7b3c2339677894925d8738117c99975f2ffe4f4d"
+    "2e1cb6c2b22d3570dec96cc5d935bbd5dbfa5af8e0f082333d87f654b32536d8"
+    "5d5f3c962fd88a809a6963c95200367a6e25a41b8bb2f649cd939e8c50d52d5e"
+    "859569c75359733dd2fb40eabc74e02179859557cd5910d2d2dd059879e00c92"
+    "f5cf0ba6e20ce355d7d2f312a7f2c81c70215b8b4d9ccd2801f16a0cb1b55598"
+    "f40bfa40d9e57dff0da34604ba28a6788ae1e3cfd97b623169a5b389dae67be3"
+    "5d6a8cb48508741a7fd349f631f05ef14654c20930a9ecabb4bfe95e5bd34545"
+    "657895c563bcc02d2a6accf1db9ee8426683391138cf3fab6c8286d76b734e4a"
+    "5099f1f156b57550f4080b417d1d21c6a2de524bc2a96b5b135beedf7ed1efe6"
+    "6cb6ff1d54cbdf3fe348bbef428f3a793709321fc7ad2b7497761a6d23612a93"
+    "e3db146d5e3956e7420d6d5e9dc9d4509f19fd7f6339dab1d173b42b9494c3f1"
+    "63fb97d01505a1234537892a294aa055749f926ed54ec8f30e20edd5f102fc89"
+    "e0b3be014fee87b1b6160979502dfcf91e1b1cf4051fa8d1fbe8db842db3f696"
+    "69d895c52d52e29db4c132450fecfbbc8cbaec9052c69cce06f7384836038595"
+    "b0c80dd7efd8d1622ef28e507502df147c915a7dd215a52c87b8df91e1750735"
+    "a4dbb0d347320593799d60cecdc3c20d3b422d1bff3dcb86e34b5b359871e7fc"
+    "32c909d2a45f5bdb6e90debf31bb1dfd0108e50c6d5286acd1fe956e317f45a1"
+    "9318d955c2c6c009bcbfc2385123069c2a79c3a7f484a66b0952fc8b3cadcbff"
+    "58a0612bd3cb9697504e3a1f209f799b9213cd1cc9df624d44927747aea53ff1"
+    "685228f8d25883e3e1140c85ff0e3e54e5f1e0adb73117e82f1ff13c829cf13c"
+    "81f26c3615c6f0d3af4dd6aa462f759d8f4eac100d5c7d4f9e3587d8ef28f19d"
+    "d26ac0b52ba3bfa259c6ac7be982465c78ed4497021d4e10f6fd2a81d287f71c"
+    "4d6b93629215cf31c3566f44674711ce982f721d5d75a4d47c694d08ed6c8902"
+    "c90b3f2a56dd307cfd4bbb36b516a07fc570e58c1a443efcd708441396ad525a"
+    "a7b9d67d0154079f360c30e3e7ac4560840e355c90947c0c76b4e4652c3c6089"
+    "34f24f60fbbaff22d52446fc809f14cb508e64c59bb2c07ea6edadb1129bd7ef"
+    "4f33663c6ec368ba9ebf7fd95dbb2ea68fbf5702c625881ba57c3c46e4c12e31"
+    "86b4c14fcb6f577c8de2b32e9cdf6e828889fd62079fee8520e5dd6959c7c7a8"
+    "87c974524de4302e2d7264f8d26d1670506a01ed18f0f5f766ebf3f4bac68fbe"
+    "ad3569f8135e1ad1358dea1f53d886736c2acb74a42da26554e2296d24a54b6f"
+    "fe12e784cff75dc8b520362528e469118c79ab4653067e1d9386ea8f03d1514d"
+    "9c734059c8667bc6a02535f1031bc7c5b7f5288af775107de4e7e382be356723"
+    "b765bfe1895eef1cf61737b195139c8a698c168566279abcc38af3f9a2d35eb5"
+    "8706c84b0f483213f1c3dd8124f857a1cedfeb7246046f6b6b4ec32a84987d05"
+    "1f0b2a7ed63bc0a65cdfc13bf8eb7fe62a6bfba735eefb53c9773246e7adc877"
+    "fb0686d4a4742fa477aca89b710d022a547a867175beb2b839e5c06487304ac1"
+    "af32a30293b30fac53bbee88f6cd05f9acfee0ab9a7059076e6b7eb076d42a4e"
+    "92e9e1daf6bc91030d3fee8ad07254b3492e40a21b61faca47d26ba4e073e31c"
+    "56949fd048870f7702f627c12112e8e8f032d85d850e2247a2df794ea8a8cb4d"
+    "d64a8ba635d31bde98d38a928168ae82f9729892840c7c75500b5031d468d406"
+    "9361acf3984ce321300e99138d8e03c9794f9337025a25701f063d912f7315bf"
+    "630f7a225b5bfa7acd86dcc0b75ca8bf3ce4bf9913bc6ce2073a2e4fd0eeb36c"
+    "8644c96f3a0ec55f84d42a8f97a5568364b72b2170711a63d40ef0d9830f7de4"
+    "23dd59195158d28a6c774a87bd72cbb3b41542608416532a262c1d839b7867e6"
+    "4e49311498f595b39f3f3f772bbb267bb0e71a93e823fd3d870ab3034f9d077f"
+    "f694d9eb44a3a58a9d631c29e96f8e7a051fb560d71c88ca279ed6920ba31e3e"
+    "4e07d40f1c2addb11a150869ae4eaed9d2e88fd978ee370bf343bac7c203deee"
+    "a7be87f6564b0bd6ace08dc341a281d16c040460cc40abaa29822152c4d5fb2b"
+    "ff5f3ef27216d7f479cb1d2923f5f490ee559f5e4876c69d1cb878503b81f067"
+    "be48d90a16a70e3364b9798204c60c294b7d1d40e65514ad4216c073a26ca015"
+    "e6c3e859a028fe513480e3d30cd0828ed260e684e87fdf2ad26d00cee4be71f4"
+    "f48d331d99c412167414434d25e8d78af1ec369714110090e87891bf07ff708d"
+    "58a5c5f7339df8430fc3763b8b0a78a4a0627de88c4effcba72c17f4f3b01528"
+    "58b998bae51c16d642965e3b0ed0de83d5d068f3d506087eecf7fcf4b9b93103"
+    "4c3b82a594a78e74b64696b52479da703a6f2b8a05bbfff87b7bbc1984a28f16"
+    "074c6d808de5df34d851825bc713126e2c99e39af103ae19b97d8941e9cc7897"
+    "2cadcec703e5a1930914f4fb04317272059ec1de1f26b24b18cf1f4b903a0815"
+    "bfad404c58287641debb75e95da15ae8e8701d44e866f8201b00778201ebbcc3"
+    "b38d36dc9d2a2a087180d86bb954ee58a00863ec55c6b3f59b890e1638affff7"
+    "3e33c5560989e27abfa251ee033049be32a324e55b0e95819c588140ad8035bc"
+    "a3e084269dc374970f521ddb4d7f26de55b8401dc653c3774d8c00e1d4c1a5a2"
+    "db069fc54c4b7555300e1e8d015656fd633baa94cce89ebdbada39a8f2021aeb"
+    "45b430ee458eea29b9017d11ccd4e8360c44b847903e4275953c2c94c5daf226"
+    "1b47026f989f1c4f069557c40839214a106bbfd97c63e5909dab7e1e7f5d26b1"
+    "559a720b6f430d7e3e1fbd9c2fc47ddab40e98aa58db26efcac802be9da69756"
+    "27f640aa232616e97ef08f5baaf32c0d2ed8ded3cf8a9ef83c63ae41f3b85de3"
+    "2f4a4fe3ec1f6a894968aeab8d25a5bdee4777387b0a00c4d447a3a3ad868b2f"
+    "61818d7531fdaa2ceb89ce46af58ff5ce02083a8f8c6b24d0941480a4e7893dc"
+    "119315d828a990f913191ce99bf7d53a649b15b224e6c4c15c1505e39920951a"
+    "7cd80a3d34a90f41f37b24bfeee87d6062243123f8d3feb6eca5ebd3295c606a"
+    "8245c4936797248eb7cfaa7a491dfc91fd4cdb1511e20d9a0084d56792dbe36f"
+    "7aa6cdf4eaef8a59a558d5649a961a9e47f87ac22f283dbf7583cf91e7e0b4ea"
+    "7bbaa09c93c262aa96aa1798ccebb2d6edc36265c590f55f964ec1377519ea96"
+    "3cf19f0cbb012fb0ecb75a5d81913837d2c32ec1dba7df49bb56ea21114ccaa2"
+    "8ca881f82ecb1edd09719da41a4c21dabca670d4225119ea0167bb0126fd64cd"
+    "1d32b4fe3e73a426899a7758841acd02fa7b3036a0717e13139b58fcaa7d3327"
+    "3c73a69308aaeae480bb5a3d3a7c0f9c302fd402cb40ec91"
+)
+
+i2c = I2C(0, sda=Pin(SDA), scl=Pin(SCL), freq=100_000)
+
+def _r8(reg):
+    return i2c.readfrom_mem(CCS_ADDR, reg, 1)[0]
+
+def _w(reg, data):
+    i2c.writeto_mem(CCS_ADDR, reg, bytes(data))
+
+def _status(st):
+    return "fw_mode=%d app_valid=%d error=%d" % (
+        (st >> 7) & 1, (st >> 4) & 1, st & 1)
+
+print("CCS811 firmware flash — v2.0.1")
+print("FW size: %d bytes, %d chunks" % (len(FW), len(FW) // 8))
+
+# Check I2C
+addrs = i2c.scan()
+print("I2C scan:", [hex(a) for a in addrs])
+if CCS_ADDR not in addrs:
+    raise Exception("CCS811 not found at 0x%02x" % CCS_ADDR)
+
+# Step 1: Software reset → boot mode
+print("\n[1/5] Software reset...")
+_w(REG_SW_RESET, [0x11, 0xE5, 0x72, 0x8A])
+time.sleep_ms(100)
+st = _r8(REG_STATUS)
+print("      status: 0x%02x (%s)" % (st, _status(st)))
+if st & 0x80:
+    raise Exception("Sensor in app mode after reset — cannot flash")
+
+# Step 2: Erase application firmware
+print("[2/5] Erasing application firmware (~500ms)...")
+_w(REG_APP_ERASE, [0xE7, 0xA7, 0xE6, 0x09])
+time.sleep_ms(500)
+st = _r8(REG_STATUS)
+print("      status: 0x%02x (%s)" % (st, _status(st)))
+
+# Step 3: Write firmware in 8-byte chunks
+chunks = len(FW) // 8
+print("[3/5] Writing %d chunks (%d bytes)..." % (chunks, len(FW)))
+for i in range(chunks):
+    _w(REG_APP_DATA, list(FW[i * 8:(i + 1) * 8]))
+    time.sleep_ms(50)
+    if i % 80 == 0:
+        print("      chunk %d/%d" % (i, chunks))
+st = _r8(REG_STATUS)
+print("      done — status: 0x%02x (%s)" % (st, _status(st)))
+
+# Step 4: Verify firmware
+print("[4/5] Verifying firmware (~70ms)...")
+i2c.writeto(CCS_ADDR, bytes([REG_APP_VERIFY]))
+time.sleep_ms(70)
+st = _r8(REG_STATUS)
+print("      status: 0x%02x (%s)" % (st, _status(st)))
+if not (st & 0x10):
+    raise Exception("app_valid not set after verify — FLASH FAILED")
+
+# Step 5: Final reset + confirm
+print("[5/5] Final reset and confirmation...")
+_w(REG_SW_RESET, [0x11, 0xE5, 0x72, 0x8A])
+time.sleep_ms(100)
+st = _r8(REG_STATUS)
+print("      status: 0x%02x (%s)" % (st, _status(st)))
+fw_mode   = (st & 0x80) != 0
+app_valid = (st & 0x10) != 0
+if (not fw_mode) and app_valid:
+    print("\n*** SUCCESS: CCS811 flashed to firmware v2.0.1 ***")
+    print("Next steps:")
+    print("  1. mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json")
+    print("  2. mpremote connect /dev/ttyUSB0 reset")
+else:
+    raise Exception("Unexpected status after flash: 0x%02x" % st)
