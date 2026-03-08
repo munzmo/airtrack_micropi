@@ -639,7 +639,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 17
+            "y": 41
           },
           "id": 47,
           "options": {
@@ -786,7 +786,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 17
+            "y": 41
           },
           "id": 2,
           "options": {
@@ -923,7 +923,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 129
           },
           "id": 50,
           "options": {
@@ -1057,7 +1057,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 41
+            "y": 129
           },
           "id": 52,
           "options": {
@@ -1190,7 +1190,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 345
+            "y": 433
           },
           "id": 54,
           "options": {
@@ -1552,24 +1552,40 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "semi-dark-green",
                 "value": 0
               },
               {
                 "color": "dark-green",
+                "value": 450
+              },
+              {
+                "color": "light-green",
                 "value": 800
               },
               {
-                "color": "semi-dark-yellow",
+                "color": "super-light-yellow",
                 "value": 1000
               },
               {
+                "color": "yellow",
+                "value": 1500
+              },
+              {
+                "color": "light-orange",
+                "value": 2000
+              },
+              {
                 "color": "semi-dark-orange",
-                "value": 1400
+                "value": 5000
+              },
+              {
+                "color": "red",
+                "value": 30000
               },
               {
                 "color": "dark-red",
-                "value": 2000
+                "value": 40000
               }
             ]
           },
@@ -2050,24 +2066,40 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "semi-dark-green",
                 "value": 0
               },
               {
                 "color": "dark-green",
+                "value": 450
+              },
+              {
+                "color": "light-green",
                 "value": 800
               },
               {
-                "color": "semi-dark-yellow",
+                "color": "super-light-yellow",
                 "value": 1000
               },
               {
+                "color": "yellow",
+                "value": 1500
+              },
+              {
+                "color": "light-orange",
+                "value": 2000
+              },
+              {
                 "color": "semi-dark-orange",
-                "value": 1400
+                "value": 5000
+              },
+              {
+                "color": "red",
+                "value": 30000
               },
               {
                 "color": "dark-red",
-                "value": 2000
+                "value": 40000
               }
             ]
           },
@@ -2548,24 +2580,40 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "semi-dark-green",
                 "value": 0
               },
               {
                 "color": "dark-green",
+                "value": 450
+              },
+              {
+                "color": "light-green",
                 "value": 800
               },
               {
-                "color": "semi-dark-yellow",
+                "color": "super-light-yellow",
                 "value": 1000
               },
               {
+                "color": "yellow",
+                "value": 1500
+              },
+              {
+                "color": "light-orange",
+                "value": 2000
+              },
+              {
                 "color": "semi-dark-orange",
-                "value": 1400
+                "value": 5000
+              },
+              {
+                "color": "red",
+                "value": 30000
               },
               {
                 "color": "dark-red",
-                "value": 2000
+                "value": 40000
               }
             ]
           },
@@ -2835,7 +2883,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 49
+            "y": 17
           },
           "id": 1,
           "options": {
@@ -2965,7 +3013,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 49
+            "y": 17
           },
           "id": 49,
           "options": {
@@ -3094,7 +3142,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 25
           },
           "id": 6,
           "options": {
@@ -3130,6 +3178,155 @@
             }
           ],
           "title": "Barometric Pressure",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 12,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "semi-dark-green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "super-light-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 40000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_ppm"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS01 |"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 25
+          },
+          "id": 11,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_ppm{sensor=\"SENS01\"}",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "CO₂ Level",
           "type": "timeseries"
         },
         {
@@ -3226,8 +3423,8 @@
           "gridPos": {
             "h": 8,
             "w": 12,
-            "x": 12,
-            "y": 57
+            "x": 0,
+            "y": 33
           },
           "id": 13,
           "options": {
@@ -3263,139 +3460,6 @@
             }
           ],
           "title": "VOC Level",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 0,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "light-green",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 800
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 1000
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 1400
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 2000
-                  }
-                ]
-              },
-              "unit": "ppm"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_eco2_ppm"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS01 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 65
-          },
-          "id": 11,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.4.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_eco2_ppm{sensor=\"SENS01\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "CO₂ Level",
           "type": "timeseries"
         }
       ],
@@ -3511,7 +3575,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 74
+            "y": 42
           },
           "id": 25,
           "options": {
@@ -3641,7 +3705,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 74
+            "y": 42
           },
           "id": 26,
           "options": {
@@ -3770,7 +3834,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 82
+            "y": 50
           },
           "id": 27,
           "options": {
@@ -3806,6 +3870,155 @@
             }
           ],
           "title": "Barometric Pressure",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 12,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "semi-dark-green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "super-light-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 40000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_ppm"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS02 |"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 50
+          },
+          "id": 29,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_ppm{sensor=\"SENS02\"}",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "CO₂ Level",
           "type": "timeseries"
         },
         {
@@ -3902,8 +4115,8 @@
           "gridPos": {
             "h": 8,
             "w": 12,
-            "x": 12,
-            "y": 82
+            "x": 0,
+            "y": 58
           },
           "id": 28,
           "options": {
@@ -3939,139 +4152,6 @@
             }
           ],
           "title": "VOC Level",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 0,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "light-green",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 800
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 1000
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 1400
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 2000
-                  }
-                ]
-              },
-              "unit": "ppm"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_eco2_ppm"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS02 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 90
-          },
-          "id": 29,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.4.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_eco2_ppm{sensor=\"SENS02\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "CO₂ Level",
           "type": "timeseries"
         }
       ],
@@ -4187,7 +4267,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 99
+            "y": 67
           },
           "id": 40,
           "options": {
@@ -4317,7 +4397,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 99
+            "y": 67
           },
           "id": 41,
           "options": {
@@ -4446,7 +4526,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 107
+            "y": 75
           },
           "id": 42,
           "options": {
@@ -4482,6 +4562,155 @@
             }
           ],
           "title": "Barometric Pressure",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 12,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "semi-dark-green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "super-light-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 40000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_ppm"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS03 |"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 75
+          },
+          "id": 44,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_ppm{sensor=\"SENS03\"}",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "CO₂ Level",
           "type": "timeseries"
         },
         {
@@ -4578,8 +4807,8 @@
           "gridPos": {
             "h": 8,
             "w": 12,
-            "x": 12,
-            "y": 107
+            "x": 0,
+            "y": 83
           },
           "id": 43,
           "options": {
@@ -4615,139 +4844,6 @@
             }
           ],
           "title": "VOC Level",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 12,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "showValues": false,
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 0,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "light-green",
-                    "value": 0
-                  },
-                  {
-                    "color": "semi-dark-green",
-                    "value": 800
-                  },
-                  {
-                    "color": "semi-dark-yellow",
-                    "value": 1000
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 1400
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 2000
-                  }
-                ]
-              },
-              "unit": "ppm"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "esp32_json_eco2_ppm"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "SENS03 |"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 115
-          },
-          "id": 44,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "mean",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "12.4.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-              },
-              "editorMode": "code",
-              "expr": "esp32_json_eco2_ppm{sensor=\"SENS03\"}",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "CO₂ Level",
           "type": "timeseries"
         }
       ],
@@ -4807,7 +4903,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 8,
@@ -4909,7 +5005,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 9,
@@ -5007,7 +5103,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 16,
@@ -5062,24 +5158,40 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "semi-dark-green",
                     "value": 0
                   },
                   {
                     "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
                     "value": 800
                   },
                   {
-                    "color": "semi-dark-yellow",
+                    "color": "super-light-yellow",
                     "value": 1000
                   },
                   {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
                     "color": "semi-dark-orange",
-                    "value": 1400
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
                   },
                   {
                     "color": "dark-red",
-                    "value": 2000
+                    "value": 40000
                   }
                 ]
               },
@@ -5104,7 +5216,7 @@
             "h": 4,
             "w": 4,
             "x": 12,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 60,
@@ -5185,7 +5297,7 @@
             "h": 4,
             "w": 4,
             "x": 16,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 66,
@@ -5265,7 +5377,7 @@
             "h": 4,
             "w": 4,
             "x": 20,
-            "y": 20
+            "y": 92
           },
           "hideTimeOverride": true,
           "id": 63,
@@ -5361,7 +5473,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
           "id": 17,
@@ -5463,7 +5575,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
           "id": 23,
@@ -5561,7 +5673,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
           "id": 24,
@@ -5616,24 +5728,40 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "semi-dark-green",
                     "value": 0
                   },
                   {
                     "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
                     "value": 800
                   },
                   {
-                    "color": "semi-dark-yellow",
+                    "color": "super-light-yellow",
                     "value": 1000
                   },
                   {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
                     "color": "semi-dark-orange",
-                    "value": 1400
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
                   },
                   {
                     "color": "dark-red",
-                    "value": 2000
+                    "value": 40000
                   }
                 ]
               },
@@ -5658,10 +5786,10 @@
             "h": 4,
             "w": 4,
             "x": 12,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
-          "id": 61,
+          "id": 69,
           "options": {
             "colorMode": "value",
             "graphMode": "none",
@@ -5687,7 +5815,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "esp32_json_eco2_min_window{sensor=\"SENS02\"}\r\n",
+              "expr": "esp32_json_eco2_min_window{sensor=\"SENS02\"}",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -5739,7 +5867,7 @@
             "h": 4,
             "w": 4,
             "x": 16,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
           "id": 67,
@@ -5819,7 +5947,7 @@
             "h": 4,
             "w": 4,
             "x": 20,
-            "y": 25
+            "y": 93
           },
           "hideTimeOverride": true,
           "id": 64,
@@ -5915,7 +6043,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
           "id": 31,
@@ -6017,7 +6145,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
           "id": 32,
@@ -6115,7 +6243,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
           "id": 33,
@@ -6170,24 +6298,40 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "semi-dark-green",
                     "value": 0
                   },
                   {
                     "color": "dark-green",
+                    "value": 450
+                  },
+                  {
+                    "color": "light-green",
                     "value": 800
                   },
                   {
-                    "color": "semi-dark-yellow",
+                    "color": "super-light-yellow",
                     "value": 1000
                   },
                   {
+                    "color": "yellow",
+                    "value": 1500
+                  },
+                  {
+                    "color": "light-orange",
+                    "value": 2000
+                  },
+                  {
                     "color": "semi-dark-orange",
-                    "value": 1400
+                    "value": 5000
+                  },
+                  {
+                    "color": "red",
+                    "value": 30000
                   },
                   {
                     "color": "dark-red",
-                    "value": 2000
+                    "value": 40000
                   }
                 ]
               },
@@ -6212,10 +6356,10 @@
             "h": 4,
             "w": 4,
             "x": 12,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
-          "id": 62,
+          "id": 70,
           "options": {
             "colorMode": "value",
             "graphMode": "none",
@@ -6241,7 +6385,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "esp32_json_eco2_min_window{sensor=\"SENS03\"}\r\n",
+              "expr": "esp32_json_eco2_min_window{sensor=\"SENS03\"}",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -6293,7 +6437,7 @@
             "h": 4,
             "w": 4,
             "x": 16,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
           "id": 68,
@@ -6373,7 +6517,7 @@
             "h": 4,
             "w": 4,
             "x": 20,
-            "y": 30
+            "y": 94
           },
           "hideTimeOverride": true,
           "id": 65,
@@ -6432,6 +6576,6 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 70,
+  "version": 71,
   "weekStart": ""
 }
