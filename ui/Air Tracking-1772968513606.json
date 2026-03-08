@@ -639,7 +639,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 5
+            "y": 17
           },
           "id": 47,
           "options": {
@@ -786,7 +786,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 5
+            "y": 17
           },
           "id": 2,
           "options": {
@@ -923,7 +923,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 13
+            "y": 29
           },
           "id": 50,
           "options": {
@@ -1057,7 +1057,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 13
+            "y": 29
           },
           "id": 52,
           "options": {
@@ -1190,7 +1190,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 129
+            "y": 333
           },
           "id": 54,
           "options": {
@@ -1229,7 +1229,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "Outdoor temperature",
+      "title": "Outdoor Air Values",
       "type": "row"
     },
     {
@@ -2835,7 +2835,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 17
+            "y": 37
           },
           "id": 1,
           "options": {
@@ -2965,7 +2965,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 17
+            "y": 37
           },
           "id": 49,
           "options": {
@@ -3094,7 +3094,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 25
+            "y": 45
           },
           "id": 6,
           "options": {
@@ -3227,7 +3227,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 25
+            "y": 45
           },
           "id": 13,
           "options": {
@@ -3360,7 +3360,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 33
+            "y": 53
           },
           "id": 11,
           "options": {
@@ -3399,7 +3399,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "Time Series Living Room",
+      "title": "Time Series | Living Room",
       "type": "row"
     },
     {
@@ -3511,7 +3511,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 62
           },
           "id": 25,
           "options": {
@@ -3641,7 +3641,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 62
           },
           "id": 26,
           "options": {
@@ -3770,7 +3770,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 50
+            "y": 70
           },
           "id": 27,
           "options": {
@@ -3903,7 +3903,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 50
+            "y": 70
           },
           "id": 28,
           "options": {
@@ -4036,7 +4036,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 58
+            "y": 78
           },
           "id": 29,
           "options": {
@@ -4075,7 +4075,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "Time Series Bathroom",
+      "title": "Time Series | Bathroom",
       "type": "row"
     },
     {
@@ -4187,7 +4187,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 67
+            "y": 87
           },
           "id": 40,
           "options": {
@@ -4317,7 +4317,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 67
+            "y": 87
           },
           "id": 41,
           "options": {
@@ -4446,7 +4446,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 75
+            "y": 95
           },
           "id": 42,
           "options": {
@@ -4579,7 +4579,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 75
+            "y": 95
           },
           "id": 43,
           "options": {
@@ -4712,7 +4712,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 83
+            "y": 103
           },
           "id": 44,
           "options": {
@@ -4751,7 +4751,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "Time Series Bedroom",
+      "title": "Time Series | Bedroom",
       "type": "row"
     },
     {
@@ -4807,7 +4807,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 92
+            "y": 20
           },
           "hideTimeOverride": true,
           "id": 8,
@@ -4909,7 +4909,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 92
+            "y": 20
           },
           "hideTimeOverride": true,
           "id": 9,
@@ -5007,7 +5007,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 92
+            "y": 20
           },
           "hideTimeOverride": true,
           "id": 16,
@@ -5044,6 +5044,263 @@
           ],
           "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 1",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "semi-dark-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 1400
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 2000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_min_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS01"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 20
+          },
+          "hideTimeOverride": true,
+          "id": 60,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_min_window{sensor=\"SENS01\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "CO₂ Level Baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_saved"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS01"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 16,
+            "y": 20
+          },
+          "hideTimeOverride": true,
+          "id": 66,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_saved{sensor=\"SENS01\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Saved baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_current_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS01"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 20,
+            "y": 20
+          },
+          "hideTimeOverride": true,
+          "id": 63,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_current_window{sensor=\"SENS01\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Internal calibration status",
           "type": "stat"
         }
       ],
@@ -5103,7 +5360,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 97
+            "y": 21
           },
           "hideTimeOverride": true,
           "id": 17,
@@ -5205,7 +5462,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 97
+            "y": 21
           },
           "hideTimeOverride": true,
           "id": 23,
@@ -5303,7 +5560,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 97
+            "y": 21
           },
           "hideTimeOverride": true,
           "id": 24,
@@ -5340,6 +5597,263 @@
           ],
           "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 2",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "semi-dark-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 1400
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 2000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_min_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS02"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 21
+          },
+          "hideTimeOverride": true,
+          "id": 61,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_min_window{sensor=\"SENS02\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "CO₂ Level Baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_saved"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS02"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 16,
+            "y": 21
+          },
+          "hideTimeOverride": true,
+          "id": 67,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_saved{sensor=\"SENS02\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Saved baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_current_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS02"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 20,
+            "y": 21
+          },
+          "hideTimeOverride": true,
+          "id": 64,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_current_window{sensor=\"SENS02\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Internal calibration status",
           "type": "stat"
         }
       ],
@@ -5399,7 +5913,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 102
+            "y": 22
           },
           "hideTimeOverride": true,
           "id": 31,
@@ -5501,7 +6015,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 102
+            "y": 22
           },
           "hideTimeOverride": true,
           "id": 32,
@@ -5599,7 +6113,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 102
+            "y": 22
           },
           "hideTimeOverride": true,
           "id": 33,
@@ -5637,6 +6151,263 @@
           "timeFrom": "1m",
           "title": "Last Poll Duration Sensor 3",
           "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 800
+                  },
+                  {
+                    "color": "semi-dark-yellow",
+                    "value": 1000
+                  },
+                  {
+                    "color": "semi-dark-orange",
+                    "value": 1400
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 2000
+                  }
+                ]
+              },
+              "unit": "ppm"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_eco2_min_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS03"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 22
+          },
+          "hideTimeOverride": true,
+          "id": 62,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_eco2_min_window{sensor=\"SENS03\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "CO₂ Level Baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_saved"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS03"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 16,
+            "y": 22
+          },
+          "hideTimeOverride": true,
+          "id": 68,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_saved{sensor=\"SENS03\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Saved baseline",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#ffffff",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "esp32_json_bl_current_window"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "SENS03"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 20,
+            "y": 22
+          },
+          "hideTimeOverride": true,
+          "id": 65,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "12.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "editorMode": "code",
+              "expr": "esp32_json_bl_current_window{sensor=\"SENS03\"}\r\n",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Internal calibration status",
+          "type": "stat"
         }
       ],
       "title": "Technical Stats | Bedroom",
@@ -5658,6 +6429,6 @@
   "timezone": "browser",
   "title": "Air Tracking",
   "uid": "0f17d6b7-ebd7-4a03-831b-f29aa9791e9e",
-  "version": 68,
+  "version": 69,
   "weekStart": ""
 }
