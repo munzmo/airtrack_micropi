@@ -113,6 +113,19 @@ curl http://192.168.178.37:8000/metrics
 ```console
 curl http://192.168.178.37:8000/json
 ```
+### CCS811 baseline
+```console
+curl http://192.168.178.37:8000/baseline
+```
+Returns:
+```json
+{"bl_saved": 12345, "bl_current_window": 12300, "eco2_min_window": 400}
+```
+| Field | Description |
+|-------|-------------|
+| `bl_saved` | Baseline value stored in `ccs811_baseline.json` (loaded on boot) |
+| `bl_current_window` | Baseline captured at the eco2 minimum in the current 24h window |
+| `eco2_min_window` | Lowest eCO2 (ppm) seen in the current 24h window |
 
 # Available endpoints
 The individual measuring points can be addressed via the sensors {sensor=“SENS01”}, e.g.,

@@ -146,6 +146,19 @@ def build_metrics():
 
     return "\n".join(lines) + "\n"
 
+def build_baseline():
+    bl_saved = None
+    try:
+        with open(BASELINE_FILE, "r") as f:
+            bl_saved = json.load(f).get("bl")
+    except:
+        pass
+    eco2_min = "null" if eco2_min_seen is None else str(eco2_min_seen)
+    bl_cur   = "null" if baseline_at_min is None else str(baseline_at_min)
+    bl_file  = "null" if bl_saved is None else str(bl_saved)
+    return ('{"bl_saved":%s,"bl_current_window":%s,"eco2_min_window":%s}\n'
+            % (bl_file, bl_cur, eco2_min))
+
 def build_json():
     ts = "null" if latest["ts"] is None else str(latest["ts"])
     t  = "null" if latest["t"] is None else ("%.2f" % latest["t"])
@@ -250,6 +263,9 @@ while True:
                 http_reply(cl, "200 OK", "text/plain; version=0.0.4; charset=utf-8", body)
             elif path == b"/json":
                 body = build_json().encode()
+                http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
+            elif path == b"/baseline":
+                body = build_baseline().encode()
                 http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
             else:
                 body = b"not found\n"
