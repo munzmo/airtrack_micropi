@@ -104,6 +104,8 @@ The sensor will then recalibrate from scratch (~20–48h until stable readings).
 #### How the baseline is saved automatically
 The code tracks the **lowest eCO2 value observed within each 24h window** and captures the corresponding baseline at that moment. Every 24h the best baseline of the window is written to flash and the window resets. This requires no fixed threshold and no assumptions about the environment — the cleanest observed moment of the day is always used.
 
+The saved baseline is only overwritten if the window minimum was **< 800 ppm**. If the entire window was too polluted (≥ 800 ppm), the previously saved baseline is kept to avoid replacing a known-good calibration with a worse one.
+
 ## Curl endpoints local network
 ### Metadata
 ```console
@@ -126,6 +128,38 @@ Returns:
 | `bl_saved` | Baseline value stored in `ccs811_baseline.json` (loaded on boot) |
 | `bl_current_window` | Baseline captured at the eco2 minimum in the current 24h window |
 | `eco2_min_window` | Lowest eCO2 (ppm) seen in the current 24h window |
+
+### OTA file update
+Upload a file to the board over the local network. The board reboots automatically after a successful write.
+
+```console
+# Update main.py
+curl -X POST http://192.168.178.37:8000/update?file=main.py \
+     --data-binary @main.py
+
+# Update any other file (e.g. wpse342.py)
+curl -X POST http://192.168.178.37:8000/update?file=wpse342.py \
+     --data-binary @wpse342.py
+```
+
+| Parameter | Description |
+|-----------|-------------|
+| `file` | Target filename on the board (default: `main.py`) |
+| `token` | Required if `UPDATE_TOKEN` is set in `secrets.py` (see below) |
+
+Maximum upload size: 64 KB.
+
+#### Optional token protection
+Add to `secrets.py` to require a token on every update request:
+```python
+UPDATE_TOKEN = "your-secret"
+```
+Then pass the token as a query parameter:
+```console
+curl -X POST "http://192.168.178.37:8000/update?file=main.py&token=your-secret" \
+     --data-binary @main.py
+```
+If `UPDATE_TOKEN` is not set in `secrets.py`, no token is required.
 
 # Available endpoints
 The individual measuring points can be addressed via the sensors {sensor=“SENS01”}, e.g.,

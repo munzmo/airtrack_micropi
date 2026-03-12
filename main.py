@@ -1,4 +1,4 @@
-from machine import Pin, I2C, PWM
+from machine import Pin, I2C, PWM, reset
 import time
 import socket
 import network
@@ -169,6 +169,32 @@ def build_json():
     return ('{"ts":%s,"ms":%d,"t":%s,"rh":%s,"p":%s,"eco2":%s,"tvoc":%s}\n'
             % (ts, latest["ms"], t, rh, p, eco2, tvoc))
 
+UPDATE_TOKEN = getattr(secrets, "UPDATE_TOKEN", None)
+UPDATE_MAX_BYTES = 65536  # 64 KB
+
+def _content_length(req):
+    for line in req.split(b"\r\n"):
+        if line.lower().startswith(b"content-length:"):
+            try:
+                return int(line.split(b":", 1)[1].strip())
+            except Exception:
+                pass
+    return 0
+
+def _recv_body(cl, req, length):
+    idx = req.find(b"\r\n\r\n")
+    body = req[idx + 4:] if idx >= 0 else b""
+    cl.settimeout(10)
+    while len(body) < length:
+        try:
+            chunk = cl.recv(min(512, length - len(body)))
+        except OSError:
+            break
+        if not chunk:
+            break
+        body += chunk
+    return body
+
 def http_reply(cl, status, ctype, body):
     cl.send(("HTTP/1.1 %s\r\n" % status).encode())
     cl.send(("Content-Type: %s\r\n" % ctype).encode())
@@ -222,18 +248,22 @@ while True:
             else:
                 latest["eco2"], latest["tvoc"] = None, None
 
-        # Baseline save — store the baseline captured at the 24h eco2 minimum
+        # Baseline save — store the baseline captured at the 24h eco2 minimum.
+        # Only overwrite the saved baseline if the window minimum is plausible
+        # (< 800 ppm), to avoid replacing a known-good baseline with a worse one.
         if time.ticks_diff(now, last_baseline_save) >= BASELINE_SAVE_MS:
             last_baseline_save = now
-            if baseline_at_min is not None:
+            if baseline_at_min is not None and eco2_min_seen is not None and eco2_min_seen < 800:
                 try:
                     with open(BASELINE_FILE, "w") as f:
                         json.dump({"bl": baseline_at_min}, f)
                     print("baseline: saved %d at eco2_min=%d ppm" % (baseline_at_min, eco2_min_seen))
                 except:
                     pass
-            else:
+            elif baseline_at_min is None:
                 print("baseline: skipped (no valid eco2 reading in window)")
+            else:
+                print("baseline: kept old (eco2_min=%d >= 800 ppm, window too polluted)" % eco2_min_seen)
             eco2_min_seen   = None
             baseline_at_min = None
 
@@ -267,6 +297,42 @@ while True:
             elif path == b"/baseline":
                 body = build_baseline().encode()
                 http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
+            elif path.startswith(b"/update"):
+                # Minimal auth: check ?token= query param against secrets.UPDATE_TOKEN
+                token_ok = UPDATE_TOKEN is None
+                if not token_ok and b"?" in path:
+                    for p in path.split(b"?", 1)[1].split(b"&"):
+                        if p.startswith(b"token=") and p[6:].decode() == UPDATE_TOKEN:
+                            token_ok = True
+                if not token_ok:
+                    http_reply(cl, "403 Forbidden", "text/plain; charset=utf-8", b"forbidden\n")
+                else:
+                    fname = "main.py"
+                    if b"?" in path:
+                        for p in path.split(b"?", 1)[1].split(b"&"):
+                            if p.startswith(b"file="):
+                                fname = p[5:].decode()
+                    clen = _content_length(req)
+                    if clen == 0 or clen > UPDATE_MAX_BYTES:
+                        http_reply(cl, "400 Bad Request", "text/plain; charset=utf-8", b"bad content-length\n")
+                    else:
+                        body = _recv_body(cl, req, clen)
+                        if len(body) < clen:
+                            http_reply(cl, "400 Bad Request", "text/plain; charset=utf-8", b"incomplete body\n")
+                        else:
+                            try:
+                                with open(fname, "wb") as f:
+                                    f.write(body)
+                                msg = ("updated %s (%d bytes), rebooting\n" % (fname, len(body))).encode()
+                                http_reply(cl, "200 OK", "text/plain; charset=utf-8", msg)
+                                try:
+                                    cl.close()
+                                except Exception:
+                                    pass
+                                time.sleep_ms(200)
+                                reset()
+                            except Exception as e:
+                                http_reply(cl, "500 Internal Server Error", "text/plain; charset=utf-8", str(e).encode())
             else:
                 body = b"not found\n"
                 http_reply(cl, "404 Not Found", "text/plain; charset=utf-8", body)
