@@ -2,8 +2,20 @@
 
 A brief description of what this project does and who it's for
 
+---
 
-## Monitoring points wpse342
+## Sensor Hardware
+
+Two sensor board variants are supported. Both use the same `main.py` — the active variant is selected via `SENSOR_TYPE` in `secrets.py`.
+
+| Sensor Board | Gas Sensor | Env Sensor | Used on |
+|---|---|---|---|
+| WPSE342 | CCS811 (I2C 0x5B) | BME280 (I2C 0x77) | SENS01, SENS02, SENS03 |
+| SparkFun ENS160/BME280 | ENS160 (I2C 0x52) | BME280 (I2C 0x77) | SENS04 |
+
+---
+
+## WPSE342 (SENS01 / SENS02 / SENS03)
 
 ### Wiring
 
@@ -15,16 +27,71 @@ A brief description of what this project does and who it's for
 | SCL  | I2C Clock | GPIO22 |
 
 ### Chip BME280
-* **t**: Temperature in Unit **°C**
+* **t**: Temperature in **°C**
 * **rh**: Relative humidity in **%**
 * **p**: Barometric pressure in **hPa**
 
 ### Chip CCS811
-* **eco2**: Equivalent CO₂ in Unit **ppm** (from **CCS811**).
-  * Not a true CO₂ meter, but calculated from VOC signals.
+* **eco2**: Equivalent CO₂ in **ppm** — calculated from VOC signals, not a true CO₂ meter.
+* **tvoc**: Total Volatile Organic Compounds in **ppb**
 
-* **tvoc**: Total Volatile Organic Compounds in **ppb** (from **CCS811**)
-  * Volatile organic compounds as a total value.
+#### CCS811 Baseline auto-save
+The code tracks the **lowest eCO2 value observed within each 24h window** and captures the corresponding baseline at that moment. Every 24h the best baseline of the window is written to flash and the window resets.
+
+The saved baseline is only overwritten if the window minimum was **< 800 ppm**. If the entire window was too polluted (≥ 800 ppm), the previously saved baseline is kept.
+
+#### Reset CCS811 baseline (clean start)
+The baseline survives power cycles and file uploads. Delete it explicitly for a clean restart:
+```console
+mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
+mpremote connect /dev/ttyUSB0 reset
+```
+The sensor will recalibrate from scratch (~20–48h until stable readings).
+
+#### Flash CCS811 firmware to v2.0.1 (one-time, optional)
+Improves internal calibration algorithm. Intended for already burned-in sensors.
+**DISCLAIMER: Risk of bricking is low (bootloader untouched), but flash at own risk.**
+
+Full sequence — flash, update files, clean baseline, restart:
+```console
+# 1. Flash CCS811 firmware
+mpremote connect /dev/ttyUSB0 cp ccs811_flash.py :ccs811_flash.py
+mpremote connect /dev/ttyUSB0 run ccs811_flash.py
+
+# 2. Upload firmware files
+mpremote connect /dev/ttyUSB0 cp main.py :main.py
+mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
+
+# 3. Delete baseline
+mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
+
+# 4. Reset
+mpremote connect /dev/ttyUSB0 reset
+```
+
+---
+
+## SparkFun ENS160/BME280 (SENS04)
+
+### Wiring
+
+| Sensor Pin | Signal | ESP32 Pin |
+|------------|--------|-----------|
+| 3.3V | Power | 3.3V |
+| GND  | Ground | GND |
+| SDA  | I2C Data | GPIO21 |
+| SCL  | I2C Clock | GPIO22 |
+| ADDR | I2C address select | GND (→ 0x52) |
+
+### Chip BME280
+Identical chip to WPSE342 — same measurements: **t** (°C), **rh** (%), **p** (hPa).
+
+### Chip ENS160
+* **eco2**: Equivalent CO₂ in **ppm**
+* **tvoc**: Total Volatile Organic Compounds in **ppb**
+* Baseline is managed **automatically on-chip** in non-volatile memory — no external JSON file needed.
+
+---
 
 ## Fan — Noctua NF-A4x10 5V PWM
 
@@ -51,93 +118,44 @@ Configured in `main.py` via `FAN_PIN`, `FAN_FREQ`, `FAN_DUTY`.
 
 ---
 
-## Connect to board
-REPL connect
-```console
-mpremote connect /dev/ttyUSB0 repl
-```
+## Board setup & deployment
 
-## Copy local to board
-### Copy to board
+### secrets.py — per-board configuration
+
+Each board gets its own `secrets.py` on flash. Two template files are kept locally (both gitignored):
+
+| Local file | `SENSOR_TYPE` | Deploy to |
+|---|---|---|
+| `secrets_ccs811.py` | `"CCS811"` | SENS01, SENS02, SENS03 |
+| `secrets_ens160.py` | `"ENS160"` | SENS04 |
+
+### Initial setup (USB)
+
 ```console
+# SENS01 / SENS02 / SENS03  (CCS811)
+mpremote connect /dev/ttyUSB0 cp secrets_ccs811.py :secrets.py
 mpremote connect /dev/ttyUSB0 cp main.py :main.py
-mpremote connect /dev/ttyUSB0 cp secrets.py :secrets.py
 mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
-mpremote connect /dev/ttyUSB0 cp wpse342_read.py :wpse342_read.py
-```
-### Reset board - like reset button
-```console
+mpremote connect /dev/ttyUSB0 reset
+
+# SENS04  (ENS160)
+mpremote connect /dev/ttyUSB0 cp secrets_ens160.py :secrets.py
+mpremote connect /dev/ttyUSB0 cp main.py :main.py
+mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
+mpremote connect /dev/ttyUSB0 cp ens160_bme280.py :ens160_bme280.py
 mpremote connect /dev/ttyUSB0 reset
 ```
 
-### Flash CCS811 firmware to v2.0.1 (one-time, optional)
-Improves internal calibration algorithm. Intended for already burned-in sensors.
-**DISCLAIMER: Risk of bricking is low (bootloader untouched), but flash at own risk.**
+### OTA update (WiFi, after initial setup)
 
-Expected output ends with `*** SUCCESS: CCS811 flashed to firmware v2.0.1 ***`.
-
-Full sequence — flash, update files, clean baseline, restart:
-```console
-# 1. Flash CCS811 firmware
-mpremote connect /dev/ttyUSB0 cp ccs811_flash.py :ccs811_flash.py
-mpremote connect /dev/ttyUSB0 run ccs811_flash.py
-
-# 2. Upload current firmware files
-mpremote connect /dev/ttyUSB0 cp main.py :main.py
-mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
-
-# 3. Delete baseline
-mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
-
-# 4. Reset — starts clean with new main.py and no baseline
-mpremote connect /dev/ttyUSB0 reset
-```
-
-### Reset CCS811 baseline (clean start)
-The baseline is stored persistently in flash and survives power cycles and file uploads.
-Delete it explicitly before a clean restart to avoid carrying over a corrupted baseline:
-```console
-mpremote connect /dev/ttyUSB0 rm :ccs811_baseline.json
-```
-The sensor will then recalibrate from scratch (~20–48h until stable readings).
-
-#### How the baseline is saved automatically
-The code tracks the **lowest eCO2 value observed within each 24h window** and captures the corresponding baseline at that moment. Every 24h the best baseline of the window is written to flash and the window resets. This requires no fixed threshold and no assumptions about the environment — the cleanest observed moment of the day is always used.
-
-The saved baseline is only overwritten if the window minimum was **< 800 ppm**. If the entire window was too polluted (≥ 800 ppm), the previously saved baseline is kept to avoid replacing a known-good calibration with a worse one.
-
-## Curl endpoints local network
-### Metadata
-```console
-curl http://192.168.178.37:8000/metrics
-```
-### Sensor readings
-```console
-curl http://192.168.178.37:8000/json
-```
-### CCS811 baseline
-```console
-curl http://192.168.178.37:8000/baseline
-```
-Returns:
-```json
-{"bl_saved": 12345, "bl_current_window": 12300, "eco2_min_window": 400}
-```
-| Field | Description |
-|-------|-------------|
-| `bl_saved` | Baseline value stored in `ccs811_baseline.json` (loaded on boot) |
-| `bl_current_window` | Baseline captured at the eco2 minimum in the current 24h window |
-| `eco2_min_window` | Lowest eCO2 (ppm) seen in the current 24h window |
-
-### OTA file update
-Upload a file to the board over the local network. The board reboots automatically after a successful write.
+Once a board is running, files can be pushed over the local network without USB. The board reboots automatically after a successful write.
 
 ```console
-# Update main.py
+# Update main.py on a single board
 curl -X POST http://192.168.178.37:8000/update?file=main.py \
      --data-binary @main.py
 
-# Update any other file (e.g. wpse342.py)
+# Update any other file
 curl -X POST http://192.168.178.37:8000/update?file=wpse342.py \
      --data-binary @wpse342.py
 ```
@@ -145,7 +163,7 @@ curl -X POST http://192.168.178.37:8000/update?file=wpse342.py \
 | Parameter | Description |
 |-----------|-------------|
 | `file` | Target filename on the board (default: `main.py`) |
-| `token` | Required if `UPDATE_TOKEN` is set in `secrets.py` (see below) |
+| `token` | Required if `UPDATE_TOKEN` is set in `secrets.py` |
 
 Maximum upload size: 64 KB.
 
@@ -154,82 +172,89 @@ Add to `secrets.py` to require a token on every update request:
 ```python
 UPDATE_TOKEN = "your-secret"
 ```
-Then pass the token as a query parameter:
 ```console
 curl -X POST "http://192.168.178.37:8000/update?file=main.py&token=your-secret" \
      --data-binary @main.py
 ```
-If `UPDATE_TOKEN` is not set in `secrets.py`, no token is required.
 
-# Available endpoints
-The individual measuring points can be addressed via the sensors {sensor=“SENS01”}, e.g.,
+### Other mpremote commands
+
+```console
+# REPL
+mpremote connect /dev/ttyUSB0 repl
+
+# Reset (like reset button)
+mpremote connect /dev/ttyUSB0 reset
+```
+
+---
+
+## HTTP endpoints
+
+### Prometheus metrics
+```console
+curl http://192.168.178.37:8000/metrics
+```
+
+### Sensor readings (JSON)
+```console
+curl http://192.168.178.37:8000/json
+```
+
+### Baseline status
+```console
+curl http://192.168.178.37:8000/baseline
+```
+Returns:
+```json
+{"bl_saved": 12345, "bl_current_window": 12300, "eco2_min_window": 400}
+```
+
+| Field | Description |
+|-------|-------------|
+| `bl_saved` | Baseline stored in `ccs811_baseline.json` (CCS811 only, loaded on boot) |
+| `bl_current_window` | Baseline captured at the eco2 minimum in the current 24h window |
+| `eco2_min_window` | Lowest eCO2 (ppm) seen in the current 24h window |
+
+> ENS160 boards: all three fields return `null` — baseline is managed on-chip.
+
+---
+
+# Prometheus / Grafana
+
+## Available metrics
+
+Metrics are identical regardless of sensor variant. Individual boards are addressed via the `sensor` label:
 ```console
 esp32_json_temperature_celsius{sensor="SENS01"}
 ```
 
-## High-Frequency
-Metrics are created by Endpoint /json and formatted by Exporter in Prometheus format.
+### High-frequency (via `/json` exporter)
 
-- Temperature in Unit **°C** (BME280)
-```console
-esp32_json_temperature_celsius
-```
-- Relative humidity in **%**
-```console
-esp32_json_humidity_percent
-```
-- Barometric pressure in **hPa**
-```console
-esp32_json_pressure_hpa
-```
-- eCO2 in ppm (CCS811)
-```console
-esp32_json_eco2_ppm
-```
-- TVOC in ppb (CCS811)
-```console
-esp32_json_tvoc_ppb
-```
-- Unix-Timestamp from ESP32 (UTC)
-```console
-esp32_json_ts_seconds
-```
-- Uptime since last boot (MS)
-```console
-esp32_json_uptime_ms
-```
-- 1 = last poll successful, 0 = Error
-```console
-esp32_json_exporter_up
-```
-- Duration of the last JSON poll in seconds
-```console
-esp32_json_exporter_poll_seconds
-```
+| Metric | Unit | Source |
+|--------|------|--------|
+| `esp32_json_temperature_celsius` | °C | BME280 |
+| `esp32_json_humidity_percent` | % | BME280 |
+| `esp32_json_pressure_hpa` | hPa | BME280 |
+| `esp32_json_eco2_ppm` | ppm | CCS811 / ENS160 |
+| `esp32_json_tvoc_ppb` | ppb | CCS811 / ENS160 |
+| `esp32_json_ts_seconds` | Unix timestamp | ESP32 |
+| `esp32_json_uptime_ms` | ms | ESP32 |
+| `esp32_json_exporter_up` | 1 = ok, 0 = error | Exporter |
+| `esp32_json_exporter_poll_seconds` | s | Exporter |
 
-## Low-Frequency
-These metrics come directly from the ESP32 /metrics.
+### Low-frequency (via `/metrics`)
 
-- Uptime since last boot (seconds)
-```console
-esp32_uptime_seconds
-```
-- Unix time of the ESP32 (UTC)
-```console
-esp32_unix_time_seconds
-```
-- WiFi signal strength in dBm
-```console
-esp32_wifi_rssi_dbm
-```
+| Metric | Unit |
+|--------|------|
+| `esp32_uptime_seconds` | s |
+| `esp32_unix_time_seconds` | Unix timestamp |
+| `esp32_wifi_rssi_dbm` | dBm |
 
-# Add new sensors
+## Add a new sensor board
 
-## Extend for /json endpoints
 ### Extend docker-compose.yml
-```console
-services:
-[...]
+```yaml
 esp32-json-exporter-sens01:
     build: ./esp32_json_exporter
     container_name: esp32-json-exporter-sens01
@@ -256,17 +281,12 @@ esp32-json-exporter-sens02:
     ports:
       - "9106:9106"
     networks:
-      - proxy      
-[...]
+      - proxy
 ```
 
 ### Extend prometheus.yml
-```console
-global:
-  scrape_interval: 15s
-
+```yaml
 scrape_configs:
-[...]
   - job_name: "esp32_json"
     scrape_interval: 3s
     scrape_timeout: 2s
@@ -281,21 +301,10 @@ scrape_configs:
           device: "esp32"
           endpoint: "json"
           sensor: "SENS02"
-    
     relabel_configs:
       - source_labels: [sensor]
-        target_label: instance   
+        target_label: instance
 
-[...]        
-```
-## Extend for /metrics endpoints
-### Extend prometheus.yml
-```console
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-[...]
   - job_name: "esp32_metrics"
     scrape_interval: 5m
     scrape_timeout: 10s
@@ -310,27 +319,22 @@ scrape_configs:
         labels:
           device: "esp32"
           endpoint: "metrics"
-          sensor: "SENS02"    
-    
+          sensor: "SENS02"
     relabel_configs:
       - source_labels: [sensor]
         target_label: instance
-
     metric_relabel_configs:
-      # drop high-freq from /json
       - source_labels: [__name__]
         regex: 'esp32_(temperature_celsius|humidity_percent|pressure_hpa|eco2_ppm|tvoc_ppb)'
         action: drop
-
-[...]        
 ```
 
-## Refactor Docker Container
-Apply compose changes + remove old renamed containers
+### Apply changes
+
 ```console
+# Rebuild containers
 docker compose up -d --build --remove-orphans
-```
-Reload Prometheus config
-```console
+
+# Reload Prometheus config
 docker exec -it prometheus_track kill -HUP 1
 ```

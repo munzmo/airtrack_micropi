@@ -6,12 +6,16 @@ import ntptime
 import secrets
 import json
 
-from wpse342 import BME280, CCS811
+if getattr(secrets, "SENSOR_TYPE", "CCS811") == "ENS160":
+    from ens160_bme280 import BME280, ENS160 as GasSensor
+    GAS_ADDR = 0x52
+else:
+    from wpse342 import BME280, CCS811 as GasSensor
+    GAS_ADDR = 0x5B
 
 SDA = 21
 SCL = 22
 BME_ADDR = 0x77
-CCS_ADDR = 0x5B
 
 FAN_PIN  = 18
 FAN_FREQ = 25_000        # Hz, Intel 4-pin PWM spec
@@ -49,15 +53,15 @@ addrs = i2c.scan()
 print("I2C:", [hex(a) for a in addrs])
 
 bme = BME280(i2c, addr=BME_ADDR)
-ccs = CCS811(i2c, addr=CCS_ADDR)
+gas = GasSensor(i2c, addr=GAS_ADDR)
 
 BASELINE_FILE    = "ccs811_baseline.json"
 BASELINE_SAVE_MS = 24 * 3600 * 1000  # save window 24h
 
-# load baseline
+# load baseline (CCS811 only — ENS160 manages baseline on-chip, set_baseline() is a no-op)
 try:
     with open(BASELINE_FILE, "r") as f:
-        ccs.set_baseline(json.load(f)["bl"])
+        gas.set_baseline(json.load(f)["bl"])
         print("baseline: loaded")
 except:
     print("baseline: none found, fresh start")
@@ -131,11 +135,11 @@ def build_metrics():
     lines.append("# TYPE esp32_pressure_hpa gauge")
     lines.append("esp32_pressure_hpa %s" % f_or_nan(latest["p"], "%.2f"))
 
-    lines.append("# HELP esp32_eco2_ppm eCO2 from CCS811 (ppm, equivalent)")
+    lines.append("# HELP esp32_eco2_ppm eCO2 from gas sensor (ppm, equivalent)")
     lines.append("# TYPE esp32_eco2_ppm gauge")
     lines.append("esp32_eco2_ppm %s" % f_or_nan(latest["eco2"]))
 
-    lines.append("# HELP esp32_tvoc_ppb TVOC from CCS811 (ppb)")
+    lines.append("# HELP esp32_tvoc_ppb TVOC from gas sensor (ppb)")
     lines.append("# TYPE esp32_tvoc_ppb gauge")
     lines.append("esp32_tvoc_ppb %s" % f_or_nan(latest["tvoc"]))
 
@@ -228,21 +232,23 @@ while True:
         t, rh, p = bme.read()
         latest["t"], latest["rh"], latest["p"] = t, rh, p
 
-        # env compensation for CCS811
+        # env compensation (temp + humidity passed to gas sensor)
         try:
-            ccs.set_env(t, rh)
+            gas.set_env(t, rh)
         except Exception:
             pass
 
-        if ccs.ready():
-            eco2, tvoc, status, err = ccs.read()
+        if gas.ready():
+            eco2, tvoc, status, err = gas.read()
             if err == 0:
                 latest["eco2"], latest["tvoc"] = eco2, tvoc
                 # minimum tracking: capture baseline at the cleanest moment seen
+                # ENS160: get_baseline() returns None, so baseline_at_min stays None
+                # and the JSON save is skipped — ENS160 manages baseline on-chip.
                 if eco2_min_seen is None or eco2 < eco2_min_seen:
                     eco2_min_seen = eco2
                     try:
-                        baseline_at_min = ccs.get_baseline()
+                        baseline_at_min = gas.get_baseline()
                     except:
                         pass
             else:
@@ -281,9 +287,9 @@ while True:
         try:
             cl.settimeout(2)
             req = cl.recv(512)
-            # very small parser: GET /path HTTP/1.1
+            # very small parser: GET|POST /path HTTP/1.1
             path = b"/"
-            if req.startswith(b"GET "):
+            if req.startswith(b"GET ") or req.startswith(b"POST "):
                 parts = req.split(b" ")
                 if len(parts) >= 2:
                     path = parts[1]
