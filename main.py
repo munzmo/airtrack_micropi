@@ -62,10 +62,23 @@ BASELINE_FILE    = "ccs811_baseline.json"
 BASELINE_SAVE_MS = 24 * 3600 * 1000  # save window 24h
 
 # load baseline (CCS811 only — ENS160 manages baseline on-chip, set_baseline() is a no-op)
+# Validates eco2_min stored alongside the baseline:
+#   - missing eco2_min → legacy file saved without validation → skip to avoid bad values
+#   - eco2_min >= 800  → was saved during polluted air → skip
 try:
     with open(BASELINE_FILE, "r") as f:
-        gas.set_baseline(json.load(f)["bl"])
-        print("baseline: loaded")
+        d = json.load(f)
+        bl           = d.get("bl")
+        eco2_at_save = d.get("eco2_min")
+        if bl is None:
+            print("baseline: malformed file, fresh start")
+        elif eco2_at_save is None:
+            print("baseline: legacy file (no eco2_min), skipping to avoid bad value")
+        elif eco2_at_save >= 800:
+            print("baseline: skipping (saved at eco2_min=%d >= 800 ppm)" % eco2_at_save)
+        else:
+            gas.set_baseline(bl)
+            print("baseline: loaded %d (eco2_min_at_save=%d ppm)" % (bl, eco2_at_save))
 except:
     print("baseline: none found, fresh start")
 
@@ -173,17 +186,21 @@ def build_metrics():
     return "\n".join(lines) + "\n"
 
 def build_baseline():
-    bl_saved = None
+    bl_saved      = None
+    eco2_at_save  = None
     try:
         with open(BASELINE_FILE, "r") as f:
-            bl_saved = json.load(f).get("bl")
+            d = json.load(f)
+            bl_saved     = d.get("bl")
+            eco2_at_save = d.get("eco2_min")
     except:
         pass
-    eco2_min = "null" if eco2_min_seen is None else str(eco2_min_seen)
-    bl_cur   = "null" if baseline_at_min is None else str(baseline_at_min)
-    bl_file  = "null" if bl_saved is None else str(bl_saved)
-    return ('{"bl_saved":%s,"bl_current_window":%s,"eco2_min_window":%s}\n'
-            % (bl_file, bl_cur, eco2_min))
+    eco2_min     = "null" if eco2_min_seen  is None else str(eco2_min_seen)
+    bl_cur       = "null" if baseline_at_min is None else str(baseline_at_min)
+    bl_file      = "null" if bl_saved        is None else str(bl_saved)
+    eco2_at_save = "null" if eco2_at_save    is None else str(eco2_at_save)
+    return ('{"bl_saved":%s,"eco2_min_at_save":%s,"bl_current_window":%s,"eco2_min_window":%s}\n'
+            % (bl_file, eco2_at_save, bl_cur, eco2_min))
 
 def build_json():
     ts = "null" if latest["ts"] is None else str(latest["ts"])
@@ -287,7 +304,7 @@ while True:
             if baseline_at_min is not None and eco2_min_seen is not None and eco2_min_seen < 800:
                 try:
                     with open(BASELINE_FILE, "w") as f:
-                        json.dump({"bl": baseline_at_min}, f)
+                        json.dump({"bl": baseline_at_min, "eco2_min": eco2_min_seen}, f)
                     print("baseline: saved %d at eco2_min=%d ppm" % (baseline_at_min, eco2_min_seen))
                 except:
                     pass
