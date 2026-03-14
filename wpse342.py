@@ -129,6 +129,11 @@ class CCS811:
     def __init__(self, i2c, addr=0x5B):
         self.i2c  = i2c
         self.addr = addr
+        # Cached diagnostic data — updated on every read()
+        self._diag_current_ua = None  # heater current in µA (0–63)
+        self._diag_adc_raw    = None  # ADC result, proportional to sensor resistance (0–1023)
+        self._diag_status     = None  # STATUS byte
+        self._diag_err_id     = None  # ERROR_ID byte
         # Full software reset (magic sequence required by datasheet)
         self.i2c.writeto_mem(self.addr, self._REG_SW_RESET,
                              bytes([0x11, 0xE5, 0x72, 0x8A]))
@@ -169,6 +174,12 @@ class CCS811:
         tvoc   = (d[2] << 8) | d[3]
         status = d[4]
         err    = d[5]
+        # Cache raw sensor data for /diag endpoint
+        # Bytes 6–7: RAW_DATA — bits[15:10] = heater current (µA), bits[9:0] = ADC result
+        self._diag_current_ua = (d[6] >> 2) & 0x3F
+        self._diag_adc_raw    = ((d[6] & 0x03) << 8) | d[7]
+        self._diag_status     = status
+        self._diag_err_id     = err
         return eco2, tvoc, status, err
 
     def set_env(self, temp_c, rh):

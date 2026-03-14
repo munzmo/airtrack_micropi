@@ -6,11 +6,14 @@ import ntptime
 import secrets
 import json
 
-if getattr(secrets, "SENSOR_TYPE", "CCS811") == "ENS160":
+SENSOR_TYPE = getattr(secrets, "SENSOR_TYPE", "CCS811")
+
+if SENSOR_TYPE == "ENS160":
     from ens160_bme280 import BME280, ENS160 as GasSensor
     GAS_ADDR = 0x52
 else:
     from wpse342 import BME280, CCS811 as GasSensor
+    from ccs811_diag import build_diag
     GAS_ADDR = 0x5B
 
 SDA = 21
@@ -76,6 +79,9 @@ baseline_at_min = None  # baseline captured at that minimum moment
 ENV_SMOOTH_N  = 5
 _env_t_buf  = []
 _env_rh_buf = []
+
+_t_smooth  = None  # last smoothed temp sent to gas sensor (for /diag)
+_rh_smooth = None  # last smoothed rh  sent to gas sensor (for /diag)
 
 def smooth_env(t, rh):
     """Return smoothed (t, rh) using a fixed-size moving average buffer."""
@@ -250,7 +256,9 @@ while True:
 
         # env compensation (smoothed temp + humidity passed to gas sensor)
         try:
-            t_s, rh_s = smooth_env(t, rh)
+            t_s, rh_s  = smooth_env(t, rh)
+            _t_smooth  = t_s
+            _rh_smooth = rh_s
             gas.set_env(t_s, rh_s)
         except Exception:
             pass
@@ -320,6 +328,22 @@ while True:
             elif path == b"/baseline":
                 body = build_baseline().encode()
                 http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
+            elif path == b"/diag":
+                if SENSOR_TYPE == "CCS811":
+                    body = build_diag({
+                        "gas":            gas,
+                        "latest":         latest,
+                        "t_smooth":       _t_smooth,
+                        "rh_smooth":      _rh_smooth,
+                        "env_t_buf":      _env_t_buf,
+                        "env_rh_buf":     _env_rh_buf,
+                        "eco2_min_seen":  eco2_min_seen,
+                        "baseline_at_min": baseline_at_min,
+                        "baseline_file":  BASELINE_FILE,
+                    }).encode()
+                    http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
+                else:
+                    http_reply(cl, "404 Not Found", "text/plain; charset=utf-8", b"not available for this sensor\n")
             elif path.startswith(b"/update"):
                 # Minimal auth: check ?token= query param against secrets.UPDATE_TOKEN
                 token_ok = UPDATE_TOKEN is None

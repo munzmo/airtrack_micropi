@@ -136,6 +136,7 @@ Each board gets its own `secrets.py` on flash. Two template files are kept local
 mpremote connect /dev/ttyUSB0 cp secrets_ccs811.py :secrets.py
 mpremote connect /dev/ttyUSB0 cp main.py :main.py
 mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
+mpremote connect /dev/ttyUSB0 cp ccs811_diag.py :ccs811_diag.py
 mpremote connect /dev/ttyUSB0 reset
 
 # SENS04  (ENS160)
@@ -200,6 +201,49 @@ curl http://192.168.178.37:8000/metrics
 ```console
 curl http://192.168.178.37:8000/json
 ```
+
+### CCS811 diagnostics
+```console
+curl http://192.168.178.37:8000/diag | python3 -m json.tool
+```
+Returns a detailed JSON explaining the current sensor state. Only available on CCS811 boards (`SENSOR_TYPE = "CCS811"`).
+
+```json
+{
+  "readings":         { "eco2_ppm": 411, "tvoc_ppb": 1 },
+  "env_compensation": { "t_raw_c": 19.05, "rh_raw_pct": 47.34,
+                        "t_smooth_c": 19.04, "rh_smooth_pct": 47.31,
+                        "buffer_n": 5, "t_buf": [...], "rh_buf": [...] },
+  "baseline":         { "current_chip": 44488, "saved_disk": 44488,
+                        "eco2_min_window": 402, "baseline_at_min": 44488 },
+  "raw_sensor":       { "current_ua": 14, "adc_raw": 287 },
+  "status":           { "fw_mode": true, "app_valid": true,
+                        "data_ready": true, "error": false, "raw": 152 },
+  "error_id":         { "heater_supply": false, "heater_fault": false,
+                        "max_resistance": false, "measmode_invalid": false,
+                        "read_reg_invalid": false, "msg_invalid": false, "raw": 0 }
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `readings.eco2_ppm` | Current eCO2 output (ppm) |
+| `readings.tvoc_ppb` | Current TVOC output (ppb) |
+| `env_compensation.t_raw_c` | Raw temperature from BME280 (°C) |
+| `env_compensation.t_smooth_c` | Smoothed temperature actually sent to CCS811 (°C) |
+| `env_compensation.rh_raw_pct` | Raw humidity from BME280 (%) |
+| `env_compensation.rh_smooth_pct` | Smoothed humidity actually sent to CCS811 (%) |
+| `env_compensation.t_buf` / `rh_buf` | Current moving average buffer (5 samples, 2s each) |
+| `baseline.current_chip` | Baseline currently active in chip (opaque 16-bit value) |
+| `baseline.saved_disk` | Baseline stored in `ccs811_baseline.json` |
+| `baseline.eco2_min_window` | Lowest eCO2 seen in current 24h window (ppm) |
+| `baseline.baseline_at_min` | Chip baseline captured at that minimum moment |
+| `raw_sensor.current_ua` | Heater current through MOX element (µA, 0–63) |
+| `raw_sensor.adc_raw` | ADC resistance reading (0–1023, higher = cleaner air) |
+| `status.fw_mode` | `true` = application firmware running, `false` = bootloader |
+| `status.data_ready` | `true` = new measurement available |
+| `status.error` | `true` = error occurred, see `error_id` for details |
+| `error_id.*` | Individual error flags decoded from ERROR_ID register |
 
 ### Baseline status
 ```console
