@@ -173,9 +173,10 @@ class CCS811:
 
     def set_env(self, temp_c, rh):
         """Pass current temperature and humidity for internal compensation."""
-        # CCS811 encoding: humidity in 1/512 %RH, temperature offset by +25°C in 1/512 °C
-        hum     = int(rh * 512)
-        tmp     = int((temp_c + 25) * 512)
+        # CCS811 encoding: bits[15:9] = integer, bit[8] = 0.5 resolution.
+        # Bits[7:0] are reserved and must be 0 (datasheet sec. 5.3) — mask lower byte.
+        hum     = int(rh * 512)       & 0xFF00
+        tmp     = int((temp_c + 25) * 512) & 0xFF00
         payload = bytes([(hum >> 8) & 0xFF, hum & 0xFF,
                          (tmp >> 8) & 0xFF, tmp & 0xFF])
         self.i2c.writeto_mem(self.addr, self._REG_ENV_DATA, payload)

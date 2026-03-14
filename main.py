@@ -70,6 +70,22 @@ last_baseline_save  = time.ticks_ms()
 eco2_min_seen   = None  # lowest eco2 observed in current 24h window
 baseline_at_min = None  # baseline captured at that minimum moment
 
+# Smoothing buffer for env compensation passed to gas sensor.
+# A 5-sample moving average prevents abrupt ENV_DATA updates during
+# rapid temperature/humidity changes (e.g. ventilation).
+ENV_SMOOTH_N  = 5
+_env_t_buf  = []
+_env_rh_buf = []
+
+def smooth_env(t, rh):
+    """Return smoothed (t, rh) using a fixed-size moving average buffer."""
+    _env_t_buf.append(t)
+    _env_rh_buf.append(rh)
+    if len(_env_t_buf) > ENV_SMOOTH_N:
+        _env_t_buf.pop(0)
+        _env_rh_buf.pop(0)
+    return sum(_env_t_buf) / len(_env_t_buf), sum(_env_rh_buf) / len(_env_rh_buf)
+
 latest = {
     "ms": 0,
     "ts": None,   # Unix epoch seconds (1970) if time is set
@@ -232,9 +248,10 @@ while True:
         t, rh, p = bme.read()
         latest["t"], latest["rh"], latest["p"] = t, rh, p
 
-        # env compensation (temp + humidity passed to gas sensor)
+        # env compensation (smoothed temp + humidity passed to gas sensor)
         try:
-            gas.set_env(t, rh)
+            t_s, rh_s = smooth_env(t, rh)
+            gas.set_env(t_s, rh_s)
         except Exception:
             pass
 
