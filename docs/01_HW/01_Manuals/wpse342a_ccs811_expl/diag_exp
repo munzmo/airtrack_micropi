@@ -1,0 +1,14 @@
+"baseline": {                                                                                                                                                                                 
+        "eco2_min_window": 400,                                                                                                                                                               
+        "current_chip": 55993,                                                                                                                                                                
+        "saved_disk": 26557,                                                                                                                                                                  
+        "baseline_at_min": 59065                                                                                                                                                              
+    }.                                                                                                                                                                                        
+
+- eco2_min_window: 400 — niedrigster CO₂-Wert den der Sensor heute gesehen hat (ppm)
+- baseline_at_min: 59065 — interner Chip-Zustand in diesem sauberen Moment → wird in ~24h gespeichert
+- saved_disk: 26557 — in der Datei gespeicherter Baseline-Wert; wird beim nächsten Boot nur geladen wenn eco2_min_at_save vorhanden und < 800 ppm
+- current_chip: 55993 — was der Chip gerade intern nutzt → kalibriert sich selbst in Richtung 59065
+
+eco2_min_at_save kommt über den Endpunkt  curl http://192.168.178.38:8000/baseline
+
