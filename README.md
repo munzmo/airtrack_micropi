@@ -262,6 +262,19 @@ Returns:
 
 > ENS160 boards: all three fields return `null` — baseline is managed on-chip.
 
+### Delete baseline (remote reset)
+Deletes `ccs811_baseline.json` from flash and reboots the board. The sensor starts fresh without a loaded baseline. Token required if `UPDATE_TOKEN` is set.
+
+```console
+curl "http://192.168.178.37:8000/delete-baseline?token=your-secret"
+```
+
+The board responds with `baseline deleted, rebooting` and restarts immediately. Use this when:
+- The saved baseline is corrupted or from a bad session
+- A clean recalibration from scratch is needed
+
+> After reboot the sensor runs uncalibrated for 20 minutes (conditioning period), then ABC takes over. Expose the sensor to fresh air within the first 24h to ensure a good baseline is captured.
+
 ---
 
 # Prometheus / Grafana

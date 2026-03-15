@@ -378,6 +378,28 @@ while True:
                     http_reply(cl, "200 OK", "application/json; charset=utf-8", body)
                 else:
                     http_reply(cl, "404 Not Found", "text/plain; charset=utf-8", b"not available for this sensor\n")
+            elif path.startswith(b"/delete-baseline"):
+                token_ok = UPDATE_TOKEN is None
+                if not token_ok and b"?" in path:
+                    for p in path.split(b"?", 1)[1].split(b"&"):
+                        if p.startswith(b"token=") and p[6:].decode() == UPDATE_TOKEN:
+                            token_ok = True
+                if not token_ok:
+                    http_reply(cl, "403 Forbidden", "text/plain; charset=utf-8", b"forbidden\n")
+                else:
+                    try:
+                        import os
+                        os.remove(BASELINE_FILE)
+                        msg = b"baseline deleted, rebooting\n"
+                    except OSError:
+                        msg = b"baseline not found, rebooting anyway\n"
+                    http_reply(cl, "200 OK", "text/plain; charset=utf-8", msg)
+                    try:
+                        cl.close()
+                    except Exception:
+                        pass
+                    time.sleep_ms(200)
+                    reset()
             elif path.startswith(b"/update"):
                 # Minimal auth: check ?token= query param against secrets.UPDATE_TOKEN
                 token_ok = UPDATE_TOKEN is None
