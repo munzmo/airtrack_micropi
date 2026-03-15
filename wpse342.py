@@ -184,9 +184,10 @@ class CCS811:
 
     def set_env(self, temp_c, rh):
         """Pass current temperature and humidity for internal compensation."""
-        # CCS811 encoding: bits[15:9] = integer, bit[8] = 0.5 resolution.
-        # Bits[7:0] are reserved and must be 0 (datasheet sec. 5.3) — mask lower byte.
-        hum     = int(rh * 512)       & 0xFF00
+        # CCS811 encoding: value = quantity * 512, big-endian, +25°C offset for temperature.
+        # Lower byte holds sub-0.5 fractional precision — zeroed here for simplicity since
+        # BME280 at x1 oversampling does not provide better than ~0.5°C / ~0.5% RH resolution.
+        hum     = int(rh * 512)            & 0xFF00
         tmp     = int((temp_c + 25) * 512) & 0xFF00
         payload = bytes([(hum >> 8) & 0xFF, hum & 0xFF,
                          (tmp >> 8) & 0xFF, tmp & 0xFF])

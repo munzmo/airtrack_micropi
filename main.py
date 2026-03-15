@@ -58,13 +58,16 @@ print("I2C:", [hex(a) for a in addrs])
 bme = BME280(i2c, addr=BME_ADDR)
 gas = GasSensor(i2c, addr=GAS_ADDR)
 
-BASELINE_FILE    = "ccs811_baseline.json"
-BASELINE_SAVE_MS = 24 * 3600 * 1000  # save window 24h
+BASELINE_FILE             = "ccs811_baseline.json"
+BASELINE_SAVE_MS          = 24 * 3600 * 1000   # save window 24h
+BASELINE_CONDITIONING_MS  = 20 * 60 * 1000     # datasheet: wait 20 min before writing baseline
 
-# load baseline (CCS811 only — ENS160 manages baseline on-chip, set_baseline() is a no-op)
-# Validates eco2_min stored alongside the baseline:
-#   - missing eco2_min → legacy file saved without validation → skip to avoid bad values
-#   - eco2_min >= 800  → was saved during polluted air → skip
+# Read baseline from file at boot but do NOT write to chip yet.
+# The chip must complete its 20-minute conditioning period first (datasheet requirement);
+# writing the baseline too early causes inflated eco2/tvoc readings.
+_bl_pending      = None   # baseline value waiting to be applied after conditioning
+_bl_pending_eco2 = None   # eco2_min recorded when this baseline was saved
+
 try:
     with open(BASELINE_FILE, "r") as f:
         d = json.load(f)
@@ -77,8 +80,10 @@ try:
         elif eco2_at_save >= 800:
             print("baseline: skipping (saved at eco2_min=%d >= 800 ppm)" % eco2_at_save)
         else:
-            gas.set_baseline(bl)
-            print("baseline: loaded %d (eco2_min_at_save=%d ppm)" % (bl, eco2_at_save))
+            _bl_pending      = bl
+            _bl_pending_eco2 = eco2_at_save
+            print("baseline: pending %d (eco2_min_at_save=%d ppm), applying after %d min conditioning"
+                  % (bl, eco2_at_save, BASELINE_CONDITIONING_MS // 60000))
 except:
     print("baseline: none found, fresh start")
 
@@ -258,6 +263,7 @@ srv.settimeout(0)
 print("http: listening on :%d (/metrics, /json)" % HTTP_PORT)
 
 last_sample = time.ticks_ms()
+_boot_ms    = time.ticks_ms()
 
 while True:
     # sample sensors
@@ -270,6 +276,17 @@ while True:
 
         t, rh, p = bme.read()
         latest["t"], latest["rh"], latest["p"] = t, rh, p
+
+        # Apply pending baseline after conditioning period (datasheet: 20 min warm-up required)
+        if _bl_pending is not None and time.ticks_diff(now, _boot_ms) >= BASELINE_CONDITIONING_MS:
+            try:
+                gas.set_baseline(_bl_pending)
+                print("baseline: applied %d after conditioning (eco2_min_at_save=%d ppm)"
+                      % (_bl_pending, _bl_pending_eco2))
+            except Exception:
+                pass
+            _bl_pending      = None
+            _bl_pending_eco2 = None
 
         # env compensation (smoothed temp + humidity passed to gas sensor)
         try:
