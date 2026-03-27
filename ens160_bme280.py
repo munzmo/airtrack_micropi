@@ -2,12 +2,13 @@
 ENS160 + BME280 driver for MicroPython (ESP32).
 Exposes the same interface as wpse342.py so main.py works unchanged.
 
-ENS160 I2C address: 0x52 (ADDR pin low, default on SparkFun board)
+ENS160 I2C address: 0x53 (ADDR pin floating/high, default on SparkFun board)
+                   0x52 if ADDR pin is pulled to GND
 BME280 I2C address: 0x77 (same as WPSE342)
 """
 
 # -- BME280 ------------------------------------------------------------------------
-# Identical chip, identical driver — re-exported from wpse342.py.
+# Identical chip, identical driver - re-exported from wpse342.py.
 from wpse342 import BME280  # noqa: F401
 
 

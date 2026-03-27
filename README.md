@@ -81,7 +81,7 @@ mpremote connect /dev/ttyUSB0 reset
 | GND  | Ground | GND |
 | SDA  | I2C Data | GPIO21 |
 | SCL  | I2C Clock | GPIO22 |
-| ADDR | I2C address select | GND (→ 0x52) |
+| ADDR | I2C address select | open/high (→ 0x53), GND (→ 0x52) |
 
 ### Chip BME280
 Identical chip to WPSE342 — same measurements: **t** (°C), **rh** (%), **p** (hPa).
@@ -134,6 +134,7 @@ Each board gets its own `secrets.py` on flash. Two template files are kept local
 ```console
 # SENS01 / SENS02 / SENS03  (CCS811)
 mpremote connect /dev/ttyUSB0 cp secrets_ccs811.py :secrets.py
+mpremote connect /dev/ttyUSB0 cp boot.py :boot.py
 mpremote connect /dev/ttyUSB0 cp main.py :main.py
 mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
 mpremote connect /dev/ttyUSB0 cp ccs811_diag.py :ccs811_diag.py
@@ -141,6 +142,7 @@ mpremote connect /dev/ttyUSB0 reset
 
 # SENS04  (ENS160)
 mpremote connect /dev/ttyUSB0 cp secrets_ens160.py :secrets.py
+mpremote connect /dev/ttyUSB0 cp boot.py :boot.py
 mpremote connect /dev/ttyUSB0 cp main.py :main.py
 mpremote connect /dev/ttyUSB0 cp wpse342.py :wpse342.py
 mpremote connect /dev/ttyUSB0 cp ens160_bme280.py :ens160_bme280.py

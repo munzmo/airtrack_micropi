@@ -10,7 +10,7 @@ SENSOR_TYPE = getattr(secrets, "SENSOR_TYPE", "CCS811")
 
 if SENSOR_TYPE == "ENS160":
     from ens160_bme280 import BME280, ENS160 as GasSensor
-    GAS_ADDR = 0x52
+    GAS_ADDR = 0x53
 else:
     from wpse342 import BME280, CCS811 as GasSensor
     from ccs811_diag import build_diag

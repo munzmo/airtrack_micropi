@@ -1,0 +1,9 @@
+Documentation
+https://micropython.org/download/ESP32_GENERIC/
+
+1. Earsing when using for the first time
+esptool.py erase_flash
+
+2. Flashing
+esptool.py --baud 460800 write_flash 0x1000 ESP32_BOARD_NAME-DATE-VERSION.bin
+
