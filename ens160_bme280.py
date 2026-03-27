@@ -35,6 +35,7 @@ class ENS160:
     def __init__(self, i2c, addr=0x52):
         self._i2c = i2c
         self._addr = addr
+        self._aqi = None
         # Start in STANDARD mode (1 s sampling)
         self._write1(self._OPMODE, 0x02)
 
@@ -70,9 +71,14 @@ class ENS160:
         tvoc_b = self._read(self._DATA_TVOC, 2)
         eco2 = eco2_b[0] | (eco2_b[1] << 8)
         tvoc = tvoc_b[0] | (tvoc_b[1] << 8)
+        self._aqi = self._read(self._DATA_AQI)[0]
 
         # err=0 also during warm-up/startup: data is preliminary but usable
         return eco2, tvoc, status, 0
+
+    def get_aqi(self):
+        """Return AQI-UBA (1=excellent .. 5=very poor), or None if not yet read."""
+        return self._aqi
 
     def set_env(self, temp_c, rh):
         """Pass current temperature and humidity for internal compensation."""

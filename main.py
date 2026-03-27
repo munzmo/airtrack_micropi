@@ -118,6 +118,7 @@ latest = {
     "p": None,
     "eco2": None,
     "tvoc": None,
+    "aqi": None,  # AQI-UBA 1–5 (ENS160 only)
 }
 
 def now_unix_or_none():
@@ -183,6 +184,11 @@ def build_metrics():
     lines.append("# TYPE esp32_tvoc_ppb gauge")
     lines.append("esp32_tvoc_ppb %s" % f_or_nan(latest["tvoc"]))
 
+    if latest["aqi"] is not None:
+        lines.append("# HELP esp32_aqi_uba AQI-UBA from ENS160 (1=excellent, 5=very poor)")
+        lines.append("# TYPE esp32_aqi_uba gauge")
+        lines.append("esp32_aqi_uba %s" % str(latest["aqi"]))
+
     if rssi is not None:
         lines.append("# HELP esp32_wifi_rssi_dbm WiFi RSSI in dBm (if available)")
         lines.append("# TYPE esp32_wifi_rssi_dbm gauge")
@@ -214,8 +220,9 @@ def build_json():
     p  = "null" if latest["p"] is None else ("%.2f" % latest["p"])
     eco2 = "null" if latest["eco2"] is None else str(latest["eco2"])
     tvoc = "null" if latest["tvoc"] is None else str(latest["tvoc"])
-    return ('{"ts":%s,"ms":%d,"t":%s,"rh":%s,"p":%s,"eco2":%s,"tvoc":%s}\n'
-            % (ts, latest["ms"], t, rh, p, eco2, tvoc))
+    aqi  = "null" if latest["aqi"]  is None else str(latest["aqi"])
+    return ('{"ts":%s,"ms":%d,"t":%s,"rh":%s,"p":%s,"eco2":%s,"tvoc":%s,"aqi":%s}\n'
+            % (ts, latest["ms"], t, rh, p, eco2, tvoc, aqi))
 
 UPDATE_TOKEN = getattr(secrets, "UPDATE_TOKEN", None)
 UPDATE_MAX_BYTES = 65536  # 64 KB
@@ -301,6 +308,8 @@ while True:
             eco2, tvoc, status, err = gas.read()
             if err == 0:
                 latest["eco2"], latest["tvoc"] = eco2, tvoc
+                if hasattr(gas, "get_aqi"):
+                    latest["aqi"] = gas.get_aqi()
                 # minimum tracking: capture baseline at the cleanest moment seen
                 # ENS160: get_baseline() returns None, so baseline_at_min stays None
                 # and the JSON save is skipped — ENS160 manages baseline on-chip.
