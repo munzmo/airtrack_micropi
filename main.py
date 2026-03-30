@@ -7,6 +7,7 @@ import secrets
 import json
 
 SENSOR_TYPE = getattr(secrets, "SENSOR_TYPE", "CCS811")
+TEMP_OFFSET = getattr(secrets, "TEMP_OFFSET", 0.0)  # °C correction for BME280 self-heating
 
 if SENSOR_TYPE == "ENS160":
     from ens160_bme280 import BME280, ENS160 as GasSensor
@@ -282,6 +283,7 @@ while True:
         latest["ts"] = now_unix_or_none()
 
         t, rh, p = bme.read()
+        t = t + TEMP_OFFSET
         latest["t"], latest["rh"], latest["p"] = t, rh, p
 
         # Apply pending baseline after conditioning period (datasheet: 20 min warm-up required)

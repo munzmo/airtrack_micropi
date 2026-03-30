@@ -30,8 +30,7 @@ class BME280:
         self.addr = addr
         self._load_cal()
         self._w8(self._REG_CTRL_H, 0x01)   # humidity oversampling x1
-        self._w8(self._REG_CTRL_M, 0x27)   # temp/pressure oversampling x1, normal mode
-        self._w8(self._REG_CONFIG, 0xA0)   # standby 1000 ms
+        self._w8(self._REG_CTRL_M, 0x24)   # temp/pressure oversampling x1, sleep mode
         time.sleep_ms(20)
 
     def _rN(self, reg, n):
@@ -76,6 +75,9 @@ class BME280:
         pressure_hpa is None if the compensation denominator is zero.
         Uses Bosch-supplied integer compensation formulas from the BME280 datasheet.
         """
+        # Trigger a single forced measurement; chip returns to sleep automatically
+        self._w8(self._REG_CTRL_M, 0x25)   # forced mode (temp x1, press x1)
+        time.sleep_ms(10)                   # ~8ms measurement time at x1 oversampling
         data  = self._rN(self._REG_DATA, 8)
         adc_p = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
         adc_t = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
