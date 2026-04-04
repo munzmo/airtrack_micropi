@@ -189,8 +189,8 @@ class CCS811:
         # CCS811 encoding: value = quantity * 512, big-endian, +25°C offset for temperature.
         # Lower byte holds sub-0.5 fractional precision — zeroed here for simplicity since
         # BME280 at x1 oversampling does not provide better than ~0.5°C / ~0.5% RH resolution.
-        hum     = int(rh * 512)            & 0xFF00
-        tmp     = int((temp_c + 25) * 512) & 0xFF00
+        hum     = int(rh * 512)
+        tmp     = int((temp_c + 25) * 512)
         payload = bytes([(hum >> 8) & 0xFF, hum & 0xFF,
                          (tmp >> 8) & 0xFF, tmp & 0xFF])
         self.i2c.writeto_mem(self.addr, self._REG_ENV_DATA, payload)
