@@ -342,8 +342,6 @@ while True:
                 print("baseline: skipped (no valid eco2 reading in window)")
             else:
                 print("baseline: kept old (eco2_min=%d >= 800 ppm, window too polluted)" % eco2_min_seen)
-            eco2_min_seen   = None
-            baseline_at_min = None
 
 
         # debugging/logging
