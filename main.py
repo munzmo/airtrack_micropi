@@ -94,6 +94,7 @@ except:
 last_baseline_save  = time.ticks_ms()
 eco2_min_seen   = None  # lowest eco2 observed in current 24h window
 baseline_at_min = None  # baseline captured at that minimum moment
+_burn_in_done   = False # True once the 20-min conditioning period has elapsed
 
 # Smoothing buffer for env compensation passed to gas sensor.
 # A 5-sample moving average prevents abrupt ENV_DATA updates during
@@ -290,8 +291,11 @@ while True:
         rh = rh + RH_OFFSET
         latest["t"], latest["rh"], latest["p"] = t, rh, p
 
+        if not _burn_in_done and time.ticks_diff(now, _boot_ms) >= BASELINE_CONDITIONING_MS:
+            _burn_in_done = True
+
         # Apply pending baseline after conditioning period (datasheet: 20 min warm-up required)
-        if _bl_pending is not None and time.ticks_diff(now, _boot_ms) >= BASELINE_CONDITIONING_MS:
+        if _bl_pending is not None and _burn_in_done:
             try:
                 gas.set_baseline(_bl_pending)
                 print("baseline: applied %d after conditioning (eco2_min_at_save=%d ppm)"
@@ -316,10 +320,12 @@ while True:
                 latest["eco2"], latest["tvoc"] = eco2, tvoc
                 if hasattr(gas, "get_aqi"):
                     latest["aqi"] = gas.get_aqi()
-                # minimum tracking: capture baseline at the cleanest moment seen
+                # minimum tracking: capture baseline at the cleanest moment seen.
+                # Skipped during burn-in — the chip clamps at 400 ppm while
+                # uncalibrated and would pin a garbage baseline for the window.
                 # ENS160: get_baseline() returns None, so baseline_at_min stays None
                 # and the JSON save is skipped — ENS160 manages baseline on-chip.
-                if eco2_min_seen is None or eco2 < eco2_min_seen:
+                if _burn_in_done and (eco2_min_seen is None or eco2 < eco2_min_seen):
                     eco2_min_seen = eco2
                     try:
                         baseline_at_min = gas.get_baseline()
