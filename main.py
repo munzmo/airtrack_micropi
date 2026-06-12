@@ -69,12 +69,14 @@ BASELINE_CONDITIONING_MS  = 20 * 60 * 1000     # datasheet: wait 20 min before w
 # writing the baseline too early causes inflated eco2/tvoc readings.
 _bl_pending      = None   # baseline value waiting to be applied after conditioning
 _bl_pending_eco2 = None   # eco2_min recorded when this baseline was saved
+saved_eco2_min   = None   # eco2_min of the baseline currently on disk (save guard)
 
 try:
     with open(BASELINE_FILE, "r") as f:
         d = json.load(f)
         bl           = d.get("bl")
         eco2_at_save = d.get("eco2_min")
+        saved_eco2_min = eco2_at_save
         if bl is None:
             print("baseline: malformed file, fresh start")
         elif eco2_at_save is None:
@@ -326,22 +328,28 @@ while True:
             else:
                 latest["eco2"], latest["tvoc"] = None, None
 
-        # Baseline save — store the baseline captured at the 24h eco2 minimum.
-        # Only overwrite the saved baseline if the window minimum is plausible
-        # (< 800 ppm), to avoid replacing a known-good baseline with a worse one.
+        # Baseline save — store the baseline captured at the 24h eco2 minimum,
+        # then reset the window. Only overwrite the saved baseline if the window
+        # minimum is plausible (< 800 ppm) and not worse than the eco2_min of the
+        # baseline already on disk, so a fresh-air baseline survives polluted windows.
         if time.ticks_diff(now, last_baseline_save) >= BASELINE_SAVE_MS:
             last_baseline_save = now
-            if baseline_at_min is not None and eco2_min_seen is not None and eco2_min_seen < 800:
+            if baseline_at_min is None:
+                print("baseline: skipped (no valid eco2 reading in window)")
+            elif eco2_min_seen >= 800:
+                print("baseline: kept old (eco2_min=%d >= 800 ppm, window too polluted)" % eco2_min_seen)
+            elif saved_eco2_min is not None and eco2_min_seen > saved_eco2_min:
+                print("baseline: kept old (window eco2_min=%d > saved %d ppm)" % (eco2_min_seen, saved_eco2_min))
+            else:
                 try:
                     with open(BASELINE_FILE, "w") as f:
                         json.dump({"bl": baseline_at_min, "eco2_min": eco2_min_seen}, f)
+                    saved_eco2_min = eco2_min_seen
                     print("baseline: saved %d at eco2_min=%d ppm" % (baseline_at_min, eco2_min_seen))
                 except:
                     pass
-            elif baseline_at_min is None:
-                print("baseline: skipped (no valid eco2 reading in window)")
-            else:
-                print("baseline: kept old (eco2_min=%d >= 800 ppm, window too polluted)" % eco2_min_seen)
+            eco2_min_seen   = None
+            baseline_at_min = None
 
 
         # debugging/logging

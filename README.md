@@ -38,7 +38,7 @@ Two sensor board variants are supported. Both use the same `main.py` — the act
 #### CCS811 Baseline auto-save
 The code tracks the **lowest eCO2 value observed within each 24h window** and captures the corresponding baseline at that moment. Every 24h the best baseline of the window is written to flash and the window resets.
 
-The saved baseline is only overwritten if the window minimum was **< 800 ppm**. If the entire window was too polluted (≥ 800 ppm), the previously saved baseline is kept.
+The saved baseline is only overwritten if the window minimum was **< 800 ppm** and **not worse than the eco2 minimum of the baseline already saved**. If the window was too polluted or its minimum was higher than the saved one, the previously saved baseline is kept.
 
 #### Reset CCS811 baseline (clean start)
 The baseline survives power cycles and file uploads. Delete it explicitly for a clean restart:
