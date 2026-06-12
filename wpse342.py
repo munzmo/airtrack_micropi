@@ -21,6 +21,7 @@ class BME280:
     _REG_H1     = 0xA1  # 1 byte:  H1 calibration
     _REG_CAL2   = 0xE1  # 7 bytes: H2–H6 calibration
     _REG_CTRL_H = 0xF2  # humidity oversampling
+    _REG_STATUS = 0xF3  # bit3 = measuring
     _REG_CTRL_M = 0xF4  # temp/pressure oversampling + mode
     _REG_CONFIG = 0xF5  # standby time + filter
     _REG_DATA   = 0xF7  # 8 bytes: press[2:0], temp[2:0], hum[1:0]
@@ -29,8 +30,13 @@ class BME280:
         self.i2c  = i2c
         self.addr = addr
         self._load_cal()
-        self._w8(self._REG_CTRL_H, 0x01)   # humidity oversampling x1
-        self._w8(self._REG_CTRL_M, 0x24)   # temp/pressure oversampling x1, sleep mode
+        # Low-noise profile: H x16, T x2, P x16, IIR filter coeff 4.
+        # The filter smooths temp/pressure across forced samples (2 s cycle)
+        # without delaying real changes as much as coeff 16 would.
+        # ctrl_hum takes effect on the next ctrl_meas write (datasheet 5.4.3).
+        self._w8(self._REG_CTRL_H, 0x05)   # humidity oversampling x16
+        self._w8(self._REG_CONFIG, 0x08)   # IIR filter coeff 4 (standby n/a in forced mode)
+        self._w8(self._REG_CTRL_M, 0x54)   # temp x2, press x16, sleep mode
         time.sleep_ms(20)
 
     def _rN(self, reg, n):
@@ -76,8 +82,13 @@ class BME280:
         Uses Bosch-supplied integer compensation formulas from the BME280 datasheet.
         """
         # Trigger a single forced measurement; chip returns to sleep automatically
-        self._w8(self._REG_CTRL_M, 0x25)   # forced mode (temp x1, press x1)
-        time.sleep_ms(10)                   # ~8ms measurement time at x1 oversampling
+        self._w8(self._REG_CTRL_M, 0x55)   # forced mode (temp x2, press x16)
+        # Measurement takes up to ~80 ms at this oversampling — poll the
+        # measuring bit instead of a fixed sleep (timeout ~150 ms).
+        for _ in range(30):
+            time.sleep_ms(5)
+            if not (self._r8(self._REG_STATUS) & 0x08):
+                break
         data  = self._rN(self._REG_DATA, 8)
         adc_p = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
         adc_t = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
